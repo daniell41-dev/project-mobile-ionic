@@ -81,8 +81,20 @@ src/
 └── main.ts                   # Bootstrap de la aplicación
 ```
 
-> La estructura por capas (core / shared / features) y las convenciones de
-> arquitectura se documentarán en las reglas del proyecto en una fase posterior.
+> La estructura por capas (`core / shared / features / tabs`) y las convenciones de
+> arquitectura están documentadas en `docs/03-arquitectura-y-buenas-practicas.md`.
+
+## Documentación / Reglas del proyecto
+
+| Documento | Contenido |
+|-----------|-----------|
+| [`docs/01-flujo-git-github.md`](./docs/01-flujo-git-github.md) | Flujo Git/GitHub: ramas, commits, PRs, code review |
+| [`docs/02-guia-deploy-y-ci.md`](./docs/02-guia-deploy-y-ci.md) | Deploy (PWA / nativo Capacitor) y CI con GitHub Actions |
+| [`docs/03-arquitectura-y-buenas-practicas.md`](./docs/03-arquitectura-y-buenas-practicas.md) | Arquitectura, estructura, convenciones, SOLID / DRY / KISS |
+| [`docs/design/`](./docs/design/) | Handoff de diseño de **Nimbo** (pantallas, tokens, prototipo) |
+| [`CLAUDE.md`](./CLAUDE.md) | Guía operativa rápida (comandos, convenciones) |
+
+> **Gestor de paquetes: pnpm** (no usar npm/yarn). El lockfile es `pnpm-lock.yaml`.
 
 ## Notas
 
