@@ -23,6 +23,13 @@ log.txt
 /platforms
 /plugins
 
+# Capacitor (plataformas nativas generadas con `npx cap add`)
+/android
+/ios
+
+# Environments locales con secretos
+src/environments/environment.local.ts
+
 # Compiled output
 /dist
 /tmp
