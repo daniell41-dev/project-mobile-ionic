@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  // Base de la API REST. En desarrollo apunta a un backend mock/local.
+  apiBaseUrl: 'https://api.nimbo.dev',
+  // Mientras no haya backend real, la capa de datos usa mocks en memoria.
+  useMockApi: true,
 };
 
 /*
