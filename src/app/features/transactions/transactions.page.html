@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Movimientos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openNotifications()">
+        <ion-icon name="notifications" slot="icon-only" />
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar
+    placeholder="Buscar movimientos"
+    [value]="searchQuery()"
+    (ionInput)="searchQuery.set($event.detail.value!)"
+    animated
+  />
+
+  <ion-segment [value]="filter()" (ionChange)="setFilter($any($event.detail.value))">
+    <ion-segment-button value="all"><ion-label>Todos</ion-label></ion-segment-button>
+    <ion-segment-button value="income"><ion-label>Ingresos</ion-label></ion-segment-button>
+    <ion-segment-button value="expense"><ion-label>Gastos</ion-label></ion-segment-button>
+  </ion-segment>
+
+  <ion-list lines="none">
+    @for (tx of filtered; track tx.id) {
+      <ion-item button (click)="openDetail(tx.id)" detail="false">
+        <div class="tx-icon" slot="start" [style.background]="tx.categoryColor + '22'">
+          <ion-icon [name]="tx.categoryIcon" [style.color]="tx.categoryColor" />
+        </div>
+        <ion-label>
+          <div class="tx-merchant">{{ tx.merchant }}</div>
+          <div class="tx-sub">{{ tx.category }} · {{ tx.time }}</div>
+        </ion-label>
+        <ion-note slot="end" [class]="tx.type === 'income' ? 'tx-up' : 'tx-down'">
+          {{ tx.type === 'income' ? '+' : '−' }}{{ tx.amount | currencyMxn }}
+        </ion-note>
+      </ion-item>
+    }
+    @empty {
+      <ion-item><ion-label class="ion-text-center">Sin resultados</ion-label></ion-item>
+    }
+  </ion-list>
+</ion-content>

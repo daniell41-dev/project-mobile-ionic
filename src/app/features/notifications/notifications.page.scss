@@ -1,0 +1,39 @@
+ion-item {
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+  align-items: flex-start;
+}
+
+.notif-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--nimbo-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline-end: 12px;
+  margin-top: 4px;
+
+  ion-icon { font-size: 20px; }
+}
+
+.notif-title { font-size: 14px; font-weight: 600; }
+
+.notif-desc {
+  font-size: 13px;
+  color: var(--nimbo-text-dim);
+  margin: 2px 0;
+}
+
+.notif-time {
+  font-size: 11px;
+  color: var(--nimbo-text-mute);
+}
+
+.unread-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--nimbo-accent);
+  align-self: center;
+}

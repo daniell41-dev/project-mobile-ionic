@@ -1,0 +1,24 @@
+.success-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 32px var(--nimbo-screen-pad);
+  gap: 16px;
+}
+
+.success-icon {
+  font-size: 80px;
+  color: var(--nimbo-up);
+}
+
+h2 { font-size: 22px; font-weight: 700; }
+p  { color: var(--nimbo-text-dim); }
+
+.spei-chip {
+  --background: var(--nimbo-surface-2);
+  --color: var(--nimbo-accent);
+  font-weight: 600;
+  margin-bottom: 8px;
+}

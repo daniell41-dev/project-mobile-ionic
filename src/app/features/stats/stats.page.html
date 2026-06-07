@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Análisis</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment [value]="period()" (ionChange)="setPeriod($any($event.detail.value))">
+    <ion-segment-button value="week"><ion-label>Semana</ion-label></ion-segment-button>
+    <ion-segment-button value="month"><ion-label>Mes</ion-label></ion-segment-button>
+    <ion-segment-button value="year"><ion-label>Año</ion-label></ion-segment-button>
+  </ion-segment>
+
+  <!-- Donut gasto por categoría -->
+  <ion-card>
+    <ion-card-content>
+      <div class="donut-section">
+        <div class="donut" [style.background]="donutGradient">
+          <div class="donut-center">
+            <span class="donut-label">Total</span>
+            <span class="donut-value amount">{{ totalSpent | currencyMxn }}</span>
+          </div>
+        </div>
+        <div class="legend">
+          @for (c of data.statsCategories(); track c.name) {
+            <div class="legend-item">
+              <span class="dot" [style.background]="c.color"></span>
+              <span class="legend-name">{{ c.name }}</span>
+              <span class="legend-pct">{{ c.percent }}%</span>
+            </div>
+          }
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Barras gasto mensual -->
+  <ion-card>
+    <ion-card-content>
+      <div class="bars-title">Gasto mensual</div>
+      <div class="bars">
+        @for (m of data.statsMonthly(); track m.month) {
+          <div class="bar-col">
+            <div class="bar-track">
+              <div class="bar-fill" [class.current]="m.current" [style.height]="barHeight(m.amount)"></div>
+            </div>
+            <span class="bar-label">{{ m.month }}</span>
+          </div>
+        }
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Tip de ahorro -->
+  <ion-card class="tip-card">
+    <ion-card-content>
+      <ion-icon name="bulb" class="tip-icon" />
+      <div>
+        <div class="tip-title">Tip de ahorro</div>
+        <p>Gastaste 18% menos este mes. Si mantienes el ritmo, alcanzarás tu meta antes.</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

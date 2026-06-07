@@ -1,0 +1,41 @@
+.tx-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px var(--nimbo-screen-pad) 24px;
+  gap: 8px;
+}
+
+.tx-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--nimbo-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ion-icon { font-size: 30px; }
+}
+
+.tx-amount {
+  font-size: 32px;
+  font-weight: 700;
+  &.up   { color: var(--nimbo-up); }
+  &.down { color: var(--nimbo-down); }
+}
+
+.tx-merchant {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--nimbo-text-dim);
+}
+
+.detail-list {
+  margin: 0 var(--nimbo-screen-pad);
+  background: transparent;
+}
+
+.ref { font-size: 11px; }
+
+.actions {
+  padding: 24px var(--nimbo-screen-pad);
+}

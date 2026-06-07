@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home" text="" />
+    </ion-buttons>
+    <ion-title>Enviar dinero</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+@if (step() === 1) {
+  <ion-content>
+    <ion-searchbar placeholder="Buscar contacto" animated />
+
+    <div class="section-label">Recientes</div>
+    <div class="recents">
+      @for (c of data.getRecentContacts(); track c.id) {
+        <div class="recent-item" (click)="selectContact(c)">
+          <div class="avatar">{{ c.initials }}</div>
+          <span>{{ c.name.split(' ')[0] }}</span>
+        </div>
+      }
+    </div>
+
+    <div class="section-label">Tus contactos</div>
+    <ion-list lines="none">
+      @for (c of data.contacts(); track c.id) {
+        <ion-item button (click)="selectContact(c)" detail="false">
+          <ion-avatar slot="start"><span>{{ c.initials }}</span></ion-avatar>
+          <ion-label>
+            <div class="contact-name">{{ c.name }}</div>
+            <div class="contact-bank">{{ c.bank }}</div>
+          </ion-label>
+        </ion-item>
+      }
+    </ion-list>
+  </ion-content>
+}
+
+@if (step() === 2) {
+  <ion-content class="send-step2">
+    @if (selectedContact(); as c) {
+      <div class="recipient-chip">{{ c.name }}</div>
+    }
+    <div class="amount-display amount">
+      {{ amount() === '0' ? '$0' : '$' + amount() }}
+    </div>
+    <div class="balance-hint">Saldo: {{ data.balance() | currencyMxn }}</div>
+
+    <!-- Teclado numérico custom (no nativo) -->
+    <ion-grid class="numpad">
+      <ion-row>
+        @for (key of PAD; track key; let i = $index) {
+          @if (i % 3 === 0) {
+            <ion-col size="4" (click)="pressKey(PAD[i])">
+              <div class="numpad-key">{{ PAD[i] }}</div>
+            </ion-col>
+            <ion-col size="4" (click)="pressKey(PAD[i+1])">
+              <div class="numpad-key">{{ PAD[i+1] }}</div>
+            </ion-col>
+            <ion-col size="4" (click)="pressKey(PAD[i+2])">
+              <div class="numpad-key" [class.del]="PAD[i+2]==='del'">
+                {{ PAD[i+2] === 'del' ? '⌫' : PAD[i+2] }}
+              </div>
+            </ion-col>
+          }
+        }
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+
+  <ion-footer>
+    <ion-button expand="block" [disabled]="amountNumber <= 0" (click)="confirmSend()">
+      Enviar {{ amountNumber > 0 ? ('$' + amount()) : '' }}
+    </ion-button>
+  </ion-footer>
+}

@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Tarjetas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @if (data.cards()[0]; as c) {
+    <!-- Visual de tarjeta -->
+    <div class="card-visual">
+      <div class="card-face">
+        <div class="card-type">Débito</div>
+        <div class="card-number">•••• •••• •••• {{ c.lastFour }}</div>
+        <div class="card-footer">
+          <span>{{ c.holder }}</span>
+          <span>{{ c.expiryMonth }}/{{ c.expiryYear }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tiles de saldo -->
+    <ion-grid class="balance-tiles">
+      <ion-row>
+        <ion-col>
+          <div class="tile">
+            <span class="tile-label">Saldo débito</span>
+            <span class="tile-value amount">{{ c.balance | currencyMxn }}</span>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div class="tile">
+            <span class="tile-label">Créd. disponible</span>
+            <span class="tile-value amount">{{ c.creditAvailable | currencyMxn }}</span>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <!-- Controles -->
+    <div class="section-label">Controles</div>
+    <ion-list lines="inset">
+      <ion-item>
+        <ion-icon name="lock-closed" slot="start" class="list-icon" />
+        <ion-label>
+          <div>Congelar tarjeta</div>
+          <p>{{ frozen() ? 'Tarjeta congelada' : 'Tarjeta activa' }}</p>
+        </ion-label>
+        <ion-toggle [checked]="frozen()" (ionChange)="toggleFrozen($event.detail.checked)" slot="end" />
+      </ion-item>
+      <ion-item>
+        <ion-icon name="globe" slot="start" class="list-icon" />
+        <ion-label>
+          <div>Compras en línea</div>
+          <p>{{ onlinePurchases() ? 'Habilitadas' : 'Deshabilitadas' }}</p>
+        </ion-label>
+        <ion-toggle [checked]="onlinePurchases()" (ionChange)="toggleOnline($event.detail.checked)" slot="end" />
+      </ion-item>
+    </ion-list>
+
+    <!-- Más opciones -->
+    <div class="section-label">Más opciones</div>
+    <ion-list lines="inset">
+      <ion-item button detail>
+        <ion-icon name="keypad" slot="start" class="list-icon" />
+        <ion-label>Ver PIN / CVV</ion-label>
+      </ion-item>
+      <ion-item button detail>
+        <ion-icon name="copy" slot="start" class="list-icon" />
+        <ion-label>Copiar datos de tarjeta</ion-label>
+      </ion-item>
+      <ion-item button detail>
+        <ion-icon name="options" slot="start" class="list-icon" />
+        <ion-label>Límites de gasto</ion-label>
+      </ion-item>
+      <ion-item button detail>
+        <ion-icon name="card" slot="start" class="list-icon" />
+        <ion-label>Solicitar tarjeta física</ion-label>
+      </ion-item>
+    </ion-list>
+  }
+</ion-content>

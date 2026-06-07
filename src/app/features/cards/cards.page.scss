@@ -1,0 +1,63 @@
+.card-visual {
+  padding: 20px var(--nimbo-screen-pad);
+}
+
+.card-face {
+  background: var(--nimbo-card-gradient);
+  border-radius: var(--nimbo-radius-lg);
+  padding: 24px;
+  color: #fff;
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--nimbo-shadow-card);
+}
+
+.card-type { font-size: 13px; opacity: 0.7; }
+
+.card-number {
+  font-size: 18px;
+  font-family: 'Sora', monospace;
+  letter-spacing: 0.12em;
+  margin: auto 0;
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.balance-tiles {
+  margin: 0 var(--nimbo-screen-pad) 8px;
+  padding: 0;
+}
+
+.tile {
+  background: var(--nimbo-surface);
+  border-radius: var(--nimbo-radius-md);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tile-label { font-size: 12px; color: var(--nimbo-text-dim); }
+.tile-value { font-size: 18px; font-weight: 700; }
+
+.section-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--nimbo-text-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 16px var(--nimbo-screen-pad) 8px;
+}
+
+.list-icon {
+  font-size: 20px;
+  color: var(--nimbo-accent);
+  margin-inline-end: 8px;
+}

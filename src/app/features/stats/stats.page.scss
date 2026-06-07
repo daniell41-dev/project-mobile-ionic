@@ -1,0 +1,121 @@
+ion-segment {
+  margin: 8px var(--nimbo-screen-pad) 16px;
+}
+
+ion-card {
+  margin: 0 var(--nimbo-screen-pad) 16px;
+}
+
+// ── Donut ──────────────────────────────────────────────────────────────────
+.donut-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.donut {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.donut-center {
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background: var(--nimbo-surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.donut-label { font-size: 11px; color: var(--nimbo-text-dim); }
+.donut-value { font-size: 14px; font-weight: 700; }
+
+.legend {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.legend-name { flex: 1; color: var(--nimbo-text-dim); }
+.legend-pct { font-weight: 600; font-family: 'Sora', monospace; }
+
+// ── Barras ─────────────────────────────────────────────────────────────────
+.bars-title {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.bars {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  height: 140px;
+}
+
+.bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.bar-track {
+  width: 24px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.bar-fill {
+  width: 100%;
+  border-radius: 6px;
+  background: var(--nimbo-surface-3);
+  transition: height 0.3s;
+
+  &.current { background: var(--nimbo-accent); }
+}
+
+.bar-label { font-size: 11px; color: var(--nimbo-text-dim); }
+
+// ── Tip ────────────────────────────────────────────────────────────────────
+.tip-card ion-card-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.tip-icon {
+  font-size: 28px;
+  color: var(--nimbo-accent);
+  flex: 0 0 auto;
+}
+
+.tip-title { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+.tip-card p { font-size: 13px; color: var(--nimbo-text-dim); margin: 0; }

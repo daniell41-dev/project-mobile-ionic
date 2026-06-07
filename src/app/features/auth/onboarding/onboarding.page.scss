@@ -1,0 +1,21 @@
+.onboarding-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 16px;
+  padding: 32px var(--nimbo-screen-pad);
+
+  h1 {
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--nimbo-accent);
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    color: var(--nimbo-text-dim);
+    margin-bottom: 24px;
+  }
+}

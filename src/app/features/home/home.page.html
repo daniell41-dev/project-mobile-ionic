@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-avatar class="header-avatar">
+        <span>{{ data.user().avatarInitials }}</span>
+      </ion-avatar>
+      <ion-label class="header-greeting">
+        <span class="dim">Hola,</span> {{ data.user().firstName }}
+      </ion-label>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="openNotifications()">
+        <ion-icon name="notifications" slot="icon-only" />
+        <ion-badge color="danger">3</ion-badge>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Tarjeta de saldo -->
+  <ion-card class="balance-card">
+    <ion-card-content>
+      <div class="balance-header">
+        <span class="balance-label">Saldo disponible</span>
+        <ion-button fill="clear" size="small" (click)="toggleBalance()">
+          <ion-icon [name]="balanceHidden ? 'eye-off' : 'eye'" slot="icon-only" />
+        </ion-button>
+      </div>
+      <div class="balance-amount amount">
+        {{ balanceHidden ? '$ •••••••' : (data.balance() | currencyMxn) }}
+      </div>
+      <div class="balance-footer">
+        <span class="balance-change">+{{ data.balanceChange() }}% este mes</span>
+        <span class="balance-clabe">CLABE ·· {{ data.user().clabe.slice(-4) }}</span>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Acciones rápidas -->
+  <ion-grid class="quick-actions">
+    <ion-row>
+      <ion-col (click)="openSend()">
+        <div class="action-btn"><ion-icon name="send" /></div>
+        <span>Enviar</span>
+      </ion-col>
+      <ion-col>
+        <div class="action-btn"><ion-icon name="arrow-down" /></div>
+        <span>Solicitar</span>
+      </ion-col>
+      <ion-col>
+        <div class="action-btn"><ion-icon name="flash" /></div>
+        <span>Pagar</span>
+      </ion-col>
+      <ion-col>
+        <div class="action-btn"><ion-icon name="qr-code" /></div>
+        <span>Cobrar</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Meta de ahorro -->
+  <div class="section-header">
+    <span>Meta de ahorro</span>
+    <ion-button fill="clear" size="small">Ver</ion-button>
+  </div>
+  @if (data.savingsGoals().length > 0) {
+    @let goal = data.savingsGoals()[0];
+    <ion-card class="goal-card">
+      <ion-card-content>
+        <div class="goal-row">
+          <div class="goal-info">
+            <div class="goal-icon"><ion-icon name="flame" /></div>
+            <div>
+              <div class="goal-name">{{ goal.name }}</div>
+              <div class="goal-amounts dim">
+                {{ goal.current | currencyMxn }} de {{ goal.target | currencyMxn }}
+              </div>
+            </div>
+          </div>
+          <span class="goal-pct">{{ (goal.progress * 100).toFixed(0) }}%</span>
+        </div>
+        <ion-progress-bar [value]="goal.progress" color="primary" />
+      </ion-card-content>
+    </ion-card>
+  }
+
+  <!-- Movimientos recientes -->
+  <div class="section-header">
+    <span>Movimientos recientes</span>
+    <ion-button fill="clear" size="small" routerLink="/tabs/transactions">Ver todos</ion-button>
+  </div>
+  <ion-list lines="none" class="tx-list">
+    @for (tx of recentTransactions; track tx.id) {
+      <ion-item button (click)="openTxDetail(tx.id)" detail="false">
+        <div class="tx-icon" slot="start" [style.background]="tx.categoryColor + '22'">
+          <ion-icon [name]="tx.categoryIcon" [style.color]="tx.categoryColor" />
+        </div>
+        <ion-label>
+          <div class="tx-merchant">{{ tx.merchant }}</div>
+          <div class="tx-sub dim">{{ tx.category }} · {{ tx.time }}</div>
+        </ion-label>
+        <ion-note slot="end" [class]="tx.type === 'income' ? 'tx-up' : 'tx-down'">
+          {{ tx.type === 'income' ? '+' : '−' }}{{ tx.amount | currencyMxn }}
+        </ion-note>
+      </ion-item>
+    }
+  </ion-list>
+</ion-content>
