@@ -38,18 +38,21 @@ export const routes: Routes = [
       import('./features/notifications/notifications.page').then(m => m.NotificationsPage),
   },
 
+  // ── Default ─────────────────────────────────────────────────────────────────
+  // El redirect de la URL raíz debe ir ANTES del loadChildren con path '' para
+  // que '/' resuelva a '/tabs/home'. Con pathMatch 'full' solo afecta a la URL
+  // vacía; el resto (p. ej. 'tabs/home') cae en el loadChildren de abajo.
+  {
+    path: '',
+    redirectTo: 'tabs/home',
+    pathMatch: 'full',
+  },
+
   // ── Autenticado: tabs (protegido por authGuard) ─────────────────────────────
   // tabs.routes es dueño del segmento 'tabs'; se carga en path '' para no duplicarlo.
   {
     path: '',
     canActivate: [authGuard],
     loadChildren: () => import('./tabs/tabs.routes').then(m => m.routes),
-  },
-
-  // ── Default ─────────────────────────────────────────────────────────────────
-  {
-    path: '',
-    redirectTo: 'tabs/home',
-    pathMatch: 'full',
   },
 ];
