@@ -1,0 +1,67 @@
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+// ─── Theming ──────────────────────────────────────────────────────────────────
+// El modo claro/oscuro se gestiona en theme/variables.scss mediante las clases
+// .dark / .light en <html> (ThemeService). Todas las variables --ion-* están
+// mapeadas allí para ambos modos, por lo que no se importan las paletas de Ionic.
+
+// ─── Tipografía Nimbo ─────────────────────────────────────────────────────────
+// Plus Jakarta Sans: UI general
+// Sora: montos y números (tabular-nums)
+// Ambas fuentes se cargan en index.html via Google Fonts.
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  letter-spacing: 0;
+}
+
+h1, h2, h3, h4, h5, .nimbo-title {
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+// Clase utilitaria para montos (aplicar donde se muestre MXN)
+.amount, .nimbo-amount {
+  font-family: 'Sora', monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+// ─── Utilidades globales ──────────────────────────────────────────────────────
+ion-content {
+  --background: var(--nimbo-bg);
+  --padding-start: var(--nimbo-screen-pad);
+  --padding-end: var(--nimbo-screen-pad);
+}
+
+ion-header ion-toolbar {
+  --background: var(--nimbo-bg);
+  --border-width: 0;
+}
+
+ion-list {
+  background: transparent;
+}
+
+ion-item {
+  --background: var(--nimbo-surface);
+  --border-color: var(--nimbo-hairline);
+}
+
+ion-card {
+  border-radius: var(--nimbo-radius-lg);
+  box-shadow: var(--nimbo-shadow-card);
+}

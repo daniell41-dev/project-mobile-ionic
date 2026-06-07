@@ -1,0 +1,109 @@
+.section-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--nimbo-text-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 16px var(--nimbo-screen-pad) 8px;
+}
+
+.recents {
+  display: flex;
+  gap: 16px;
+  padding: 0 var(--nimbo-screen-pad) 16px;
+  overflow-x: auto;
+}
+
+.recent-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+
+  span { font-size: 12px; color: var(--nimbo-text-dim); }
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--nimbo-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+}
+
+ion-avatar span {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  background: var(--nimbo-accent);
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  border-radius: 50%;
+}
+
+.contact-name { font-size: 14px; font-weight: 600; }
+.contact-bank { font-size: 12px; color: var(--nimbo-text-dim); }
+
+// Step 2
+.send-step2 { --padding-top: 32px; }
+
+.recipient-chip {
+  margin: 0 auto;
+  width: fit-content;
+  background: var(--nimbo-surface-2);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.amount-display {
+  font-size: 52px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.balance-hint {
+  text-align: center;
+  font-size: 13px;
+  color: var(--nimbo-text-dim);
+  margin-bottom: 24px;
+}
+
+.numpad {
+  padding: 0 var(--nimbo-screen-pad);
+}
+
+.numpad-key {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 500;
+  border-radius: var(--nimbo-radius-sm);
+  background: var(--nimbo-surface-2);
+  margin: 4px;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.1s;
+
+  &:active { opacity: 0.6; }
+  &.del { font-size: 20px; background: var(--nimbo-surface-3); }
+}
+
+ion-footer {
+  padding: 12px var(--nimbo-screen-pad);
+  background: var(--nimbo-bg);
+}

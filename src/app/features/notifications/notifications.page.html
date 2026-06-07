@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home" text="" />
+    </ion-buttons>
+    <ion-title>Notificaciones</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="markAllRead()">Marcar leídas</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="none">
+    @for (n of data.notifications(); track n.id) {
+      <ion-item>
+        <div class="notif-icon" slot="start" [style.background]="n.iconColor + '22'">
+          <ion-icon [name]="n.icon" [style.color]="n.iconColor" />
+        </div>
+        <ion-label class="ion-text-wrap">
+          <div class="notif-title">{{ n.title }}</div>
+          <p class="notif-desc">{{ n.description }}</p>
+          <ion-note class="notif-time">{{ n.time }}</ion-note>
+        </ion-label>
+        @if (!n.read) {
+          <span class="unread-dot" slot="end"></span>
+        }
+      </ion-item>
+    }
+  </ion-list>
+</ion-content>
