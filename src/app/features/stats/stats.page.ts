@@ -1,10 +1,12 @@
 import { Component, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import {
-  IonContent, IonHeader, IonToolbar, IonTitle, IonSegment,
-  IonSegmentButton, IonLabel, IonCard, IonCardContent, IonIcon,
+  IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton,
+  IonSegment, IonSegmentButton, IonLabel, IonCard, IonCardContent,
+  IonIcon, IonBadge,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { bulb } from 'ionicons/icons';
+import { notifications, trendingUpOutline, flameOutline } from 'ionicons/icons';
 import { DataService } from '../../core/services/data.service';
 import { CurrencyMxnPipe } from '../../shared/pipes/currency-mxn.pipe';
 
@@ -15,23 +17,23 @@ type Period = 'week' | 'month' | 'year';
   templateUrl: 'stats.page.html',
   styleUrls: ['stats.page.scss'],
   imports: [
-    IonContent, IonHeader, IonToolbar, IonTitle, IonSegment,
-    IonSegmentButton, IonLabel, IonCard, IonCardContent, IonIcon, CurrencyMxnPipe,
+    IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton,
+    IonSegment, IonSegmentButton, IonLabel, IonCard, IonCardContent,
+    IonIcon, IonBadge, CurrencyMxnPipe,
   ],
 })
 export class StatsPage {
   data = inject(DataService);
+  private router = inject(Router);
   period = signal<Period>('month');
 
   constructor() {
-    addIcons({ bulb });
+    addIcons({ notifications, trendingUpOutline, flameOutline });
   }
 
-  setPeriod(value: Period): void {
-    this.period.set(value);
-  }
+  setPeriod(value: Period): void { this.period.set(value); }
+  openNotifications(): void { this.router.navigateByUrl('/notifications'); }
 
-  /** Construye el conic-gradient del donut a partir de los porcentajes. */
   get donutGradient(): string {
     let acc = 0;
     const stops = this.data.statsCategories().map(c => {
@@ -43,7 +45,7 @@ export class StatsPage {
   }
 
   get totalSpent(): number {
-    return this.data.statsMonthly().find(m => m.current)?.amount ?? 0;
+    return this.data.statsCategories().reduce((s, c) => s + c.amount, 0);
   }
 
   get maxMonthly(): number {

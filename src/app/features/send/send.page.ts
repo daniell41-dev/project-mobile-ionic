@@ -3,8 +3,10 @@ import { Router } from '@angular/router';
 import {
   IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonBackButton,
   IonButton, IonSearchbar, IonList, IonItem, IonLabel, IonAvatar,
-  IonGrid, IonRow, IonCol, IonFooter,
+  IonFooter, IonIcon,
 } from '@ionic/angular/standalone';
+import { addIcons } from 'ionicons';
+import { arrowBackOutline } from 'ionicons/icons';
 import { DataService } from '../../core/services/data.service';
 import { Contact } from '../../core/models/contact.model';
 import { CurrencyMxnPipe } from '../../shared/pipes/currency-mxn.pipe';
@@ -16,7 +18,7 @@ import { CurrencyMxnPipe } from '../../shared/pipes/currency-mxn.pipe';
   imports: [
     IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonBackButton,
     IonButton, IonSearchbar, IonList, IonItem, IonLabel, IonAvatar,
-    IonGrid, IonRow, IonCol, IonFooter, CurrencyMxnPipe,
+    IonFooter, IonIcon, CurrencyMxnPipe,
   ],
 })
 export class SendPage {
@@ -26,6 +28,18 @@ export class SendPage {
   selectedContact = signal<Contact | null>(null);
   amount = signal<string>('0');
   step = signal<1 | 2>(1);
+
+  // Filas del teclado numérico (estructura 4×3 correcta)
+  readonly PAD_ROWS = [
+    ['1', '2', '3'],
+    ['4', '5', '6'],
+    ['7', '8', '9'],
+    ['.', '0', 'del'],
+  ];
+
+  constructor() {
+    addIcons({ arrowBackOutline });
+  }
 
   get amountNumber(): number {
     return parseFloat(this.amount()) || 0;
@@ -54,6 +68,4 @@ export class SendPage {
   confirmSend(): void {
     this.router.navigateByUrl('/send/done');
   }
-
-  readonly PAD = ['1','2','3','4','5','6','7','8','9','.','0','del'];
 }

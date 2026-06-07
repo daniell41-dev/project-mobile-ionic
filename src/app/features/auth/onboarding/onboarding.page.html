@@ -1,8 +1,20 @@
-<ion-content class="ion-text-center">
-  <div class="onboarding-wrap">
-    <h1>Nimbo</h1>
-    <p>Banca personal para México</p>
-    <ion-button expand="block" (click)="goToLogin()">Crear cuenta</ion-button>
-    <ion-button expand="block" fill="outline" (click)="goToLogin()">Ya tengo cuenta</ion-button>
+<ion-content [fullscreen]="true">
+  <div class="onb-wrap">
+    <div class="hero">
+      <div class="logo">
+        <ion-icon name="wallet-outline" />
+      </div>
+      <h1>Tu dinero,<br />con claridad.</h1>
+      <p>Banca personal sin comisiones ocultas.<br />Envía, paga y ahorra desde un solo lugar.</p>
+      <div class="dots">
+        <i class="on"></i><i></i><i></i>
+      </div>
+    </div>
+
+    <div class="actions">
+      <ion-button expand="block" (click)="goToLogin()">Crear cuenta</ion-button>
+      <ion-button expand="block" fill="outline" (click)="goToLogin()">Ya tengo cuenta</ion-button>
+      <p class="legal">Al continuar aceptas los <span>Términos</span> y el <span>Aviso de Privacidad</span>.</p>
+    </div>
   </div>
 </ion-content>

@@ -1,63 +1,165 @@
-.card-visual {
-  padding: 20px var(--nimbo-screen-pad);
-}
+ion-button { position: relative; }
+ion-badge { position: absolute; top: 6px; right: 4px; font-size: 9px; padding: 2px 4px; min-width: 0; }
 
-.card-face {
+// ── Tarjeta bancaria hi-fi ────────────────────────────────────────────────────
+.card-pad { padding: 20px var(--nimbo-screen-pad) 0; }
+
+.bankcard {
   background: var(--nimbo-card-gradient);
   border-radius: var(--nimbo-radius-lg);
-  padding: 24px;
+  padding: 22px 24px 20px;
   color: #fff;
-  min-height: 180px;
+  min-height: 188px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   box-shadow: var(--nimbo-shadow-card);
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    pointer-events: none;
+  }
 }
 
-.card-type { font-size: 13px; opacity: 0.7; }
-
-.card-number {
-  font-size: 18px;
-  font-family: 'Sora', monospace;
-  letter-spacing: 0.12em;
-  margin: auto 0;
-}
-
-.card-footer {
+.card-top {
   display: flex;
   justify-content: space-between;
-  font-size: 13px;
-  opacity: 0.85;
+  align-items: center;
 }
 
-.balance-tiles {
-  margin: 0 var(--nimbo-screen-pad) 8px;
-  padding: 0;
+.card-brand { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+.card-brand-icon { font-size: 22px; opacity: 0.85; }
+
+.card-chip {
+  width: 36px; height: 28px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #e8c97a 0%, #c8a84b 50%, #f0d87a 100%);
+  margin: 8px 0;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 26px; height: 1px;
+    background: rgba(0, 0, 0, 0.25);
+  }
+}
+
+.card-number {
+  font-family: 'Sora', monospace;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  margin: 4px 0;
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.card-lbl { font-size: 10px; opacity: 0.65; text-transform: uppercase; letter-spacing: 0.06em; }
+.card-val { font-size: 13px; font-weight: 700; letter-spacing: 0.04em; margin-top: 2px; }
+
+.card-network {
+  display: flex;
+  align-items: center;
+  .mc-circle {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: block;
+    &:first-child { background: #EB001B; }
+    &.right { background: #F79E1B; margin-left: -12px; opacity: 0.9; }
+  }
+}
+
+// ── Tiles saldo ───────────────────────────────────────────────────────────────
+.tiles-row {
+  display: flex;
+  gap: 12px;
+  padding: 14px var(--nimbo-screen-pad) 0;
 }
 
 .tile {
+  flex: 1;
   background: var(--nimbo-surface);
   border-radius: var(--nimbo-radius-md);
-  padding: 16px;
+  padding: 14px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
+  border: 1px solid var(--nimbo-hairline);
 }
 
-.tile-label { font-size: 12px; color: var(--nimbo-text-dim); }
-.tile-value { font-size: 18px; font-weight: 700; }
+.tile-label { font-size: 12px; color: var(--nimbo-text-dim); font-weight: 600; }
+.tile-value { font-size: 18px; font-weight: 700; font-family: 'Sora', monospace; font-variant-numeric: tabular-nums; }
 
-.section-label {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--nimbo-text-mute);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding: 16px var(--nimbo-screen-pad) 8px;
+// ── Section label ─────────────────────────────────────────────────────────────
+.section-label { font-size: 15px; font-weight: 700; padding: 18px var(--nimbo-screen-pad) 10px; }
+
+// ── Control tiles ─────────────────────────────────────────────────────────────
+.ctrl-grid {
+  display: flex;
+  gap: 12px;
+  padding: 0 var(--nimbo-screen-pad);
 }
 
-.list-icon {
-  font-size: 20px;
-  color: var(--nimbo-accent);
-  margin-inline-end: 8px;
+.ctrl-tile {
+  flex: 1;
+  background: var(--nimbo-surface);
+  border-radius: var(--nimbo-radius-md);
+  border: 1px solid var(--nimbo-hairline);
+  padding: 16px;
+  cursor: pointer;
+  user-select: none;
+  &:active { opacity: 0.8; }
+}
+
+.ctrl-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+
+.ctrl-ic {
+  width: 38px; height: 38px;
+  border-radius: var(--nimbo-radius-sm);
+  background: rgba(76, 141, 255, 0.12);
+  display: flex; align-items: center; justify-content: center;
+  ion-icon { font-size: 18px; color: var(--nimbo-accent); }
+}
+
+.ctrl-switch {
+  width: 40px; height: 24px;
+  border-radius: 12px;
+  background: var(--nimbo-surface-3);
+  position: relative;
+  transition: background 0.2s;
+  i {
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--nimbo-text-mute);
+    transition: transform 0.2s, background 0.2s;
+  }
+  &.on { background: var(--nimbo-accent); i { transform: translateX(16px); background: #fff; } }
+}
+
+.ctrl-name { font-size: 13.5px; font-weight: 700; }
+.ctrl-desc { font-size: 12px; color: var(--nimbo-text-dim); margin-top: 2px; }
+
+// ── Más opciones ──────────────────────────────────────────────────────────────
+.opt-ic {
+  width: 36px; height: 36px;
+  border-radius: var(--nimbo-radius-sm);
+  background: rgba(76, 141, 255, 0.1);
+  display: flex; align-items: center; justify-content: center;
+  margin-inline-end: 12px;
+  ion-icon { font-size: 18px; color: var(--nimbo-accent); }
 }
