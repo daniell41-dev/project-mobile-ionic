@@ -1,14 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  IonContent, IonHeader, IonToolbar, IonTitle, IonCard, IonCardContent,
-  IonChip, IonIcon, IonList, IonListHeader, IonItem, IonLabel, IonToggle,
-  IonButton, IonNote,
+  IonContent, IonHeader, IonToolbar, IonTitle, IonIcon,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
-  checkmarkCircle, person, business, shieldCheckmark, notifications,
-  globe, helpCircle, moon, logOut,
+  checkmark, personOutline, businessOutline, shieldCheckmarkOutline,
+  notificationsOutline, globeOutline, helpCircleOutline, moonOutline,
+  logOutOutline, chevronForward,
 } from 'ionicons/icons';
 import { DataService } from '../../core/services/data.service';
 import { AuthService } from '../../core/services/auth.service';
@@ -19,9 +18,7 @@ import { ThemeService } from '../../core/services/theme.service';
   templateUrl: 'profile.page.html',
   styleUrls: ['profile.page.scss'],
   imports: [
-    IonContent, IonHeader, IonToolbar, IonTitle, IonCard, IonCardContent,
-    IonChip, IonIcon, IonList, IonListHeader, IonItem, IonLabel, IonToggle,
-    IonButton, IonNote,
+    IonContent, IonHeader, IonToolbar, IonTitle, IonIcon,
   ],
 })
 export class ProfilePage {
@@ -32,8 +29,9 @@ export class ProfilePage {
 
   constructor() {
     addIcons({
-      checkmarkCircle, person, business, shieldCheckmark, notifications,
-      globe, helpCircle, moon, logOut,
+      checkmark, personOutline, businessOutline, shieldCheckmarkOutline,
+      notificationsOutline, globeOutline, helpCircleOutline, moonOutline,
+      logOutOutline, chevronForward,
     });
   }
 

@@ -1,6 +1,11 @@
+ion-list { background: transparent; }
+
 ion-item {
+  --background: transparent;
   --padding-top: 8px;
   --padding-bottom: 8px;
+  --padding-start: var(--nimbo-screen-pad);
+  --inner-padding-end: var(--nimbo-screen-pad);
   align-items: flex-start;
 }
 

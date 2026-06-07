@@ -33,22 +33,26 @@
 .avatar {
   width: 56px; height: 56px;
   border-radius: 50%;
-  background: var(--nimbo-accent);
+  background: var(--nimbo-accent-soft);
   display: flex; align-items: center; justify-content: center;
-  font-size: 18px; font-weight: 700; color: #fff;
+  font-size: 18px; font-weight: 700; color: var(--nimbo-accent);
+  flex: 0 0 auto;
 }
 
 ion-avatar span {
   display: flex;
   width: 100%; height: 100%;
   align-items: center; justify-content: center;
-  background: var(--nimbo-accent);
-  font-size: 13px; font-weight: 700; color: #fff;
+  background: var(--nimbo-accent-soft);
+  font-size: 15px; font-weight: 700; color: var(--nimbo-accent);
   border-radius: 50%;
 }
 
-.contact-name { font-size: 14px; font-weight: 600; }
-.contact-bank { font-size: 12px; color: var(--nimbo-text-dim); }
+ion-list { background: transparent; }
+ion-list ion-item { --background: transparent; --padding-start: var(--nimbo-screen-pad); --inner-padding-end: var(--nimbo-screen-pad); }
+
+.contact-name { font-size: 15px; font-weight: 600; }
+.contact-bank { font-size: 12.5px; color: var(--nimbo-text-dim); margin-top: 2px; }
 
 // ── Paso 2 ────────────────────────────────────────────────────────────────────
 .send-step2 { --padding-top: 0; --padding-start: 0; --padding-end: 0; }
@@ -76,9 +80,9 @@ ion-avatar span {
 .avatar-sm {
   width: 30px; height: 30px;
   border-radius: 50%;
-  background: var(--nimbo-accent);
+  background: var(--nimbo-accent-soft);
   display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 700; color: #fff;
+  font-size: 12px; font-weight: 700; color: var(--nimbo-accent);
 }
 
 .amount-display {
@@ -110,20 +114,21 @@ ion-avatar span {
 
 .numpad-key {
   flex: 1;
-  min-height: 58px;
+  min-height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-  font-weight: 500;
-  border-radius: var(--nimbo-radius-sm);
-  background: var(--nimbo-surface-2);
+  font-family: 'Sora', monospace;
+  font-size: 24px;
+  font-weight: 600;
+  border-radius: 14px;
+  background: transparent;
   cursor: pointer;
   user-select: none;
-  transition: opacity 0.1s;
+  transition: background 0.1s;
 
-  &:active { opacity: 0.6; }
-  &.del-key { background: var(--nimbo-surface-3); font-size: 20px; }
+  &:active { background: var(--nimbo-surface-2); }
+  &.del-key { font-size: 22px; }
 }
 
 // ── Footer ────────────────────────────────────────────────────────────────────

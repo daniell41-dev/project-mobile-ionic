@@ -1,20 +1,22 @@
 <ion-content [fullscreen]="true">
-  <div class="onb-wrap">
+  <div class="onb">
     <div class="hero">
       <div class="logo">
         <ion-icon name="wallet" />
       </div>
-      <h1>Tu dinero,<br />con claridad.</h1>
-      <p>Banca personal sin comisiones ocultas.<br />Envía, paga y ahorra desde un solo lugar.</p>
+      <div class="copy">
+        <h1>Tu dinero,<br />con claridad.</h1>
+        <p>Banca personal sin comisiones ocultas. Envía, paga y ahorra desde un solo lugar.</p>
+      </div>
       <div class="dots">
         <i class="on"></i><i></i><i></i>
       </div>
     </div>
 
     <div class="actions">
-      <ion-button expand="block" (click)="goToLogin()">Crear cuenta</ion-button>
-      <button class="btn-ghost" (click)="goToLogin()">Ya tengo cuenta</button>
-      <p class="legal">Al continuar aceptas los <span>Términos</span> y el <span>Aviso de Privacidad</span>.</p>
+      <button class="btn" (click)="goToLogin()">Crear cuenta</button>
+      <button class="btn ghost" (click)="goToLogin()">Ya tengo cuenta</button>
+      <p class="legal">Al continuar aceptas los Términos y el Aviso de Privacidad.</p>
     </div>
   </div>
 </ion-content>

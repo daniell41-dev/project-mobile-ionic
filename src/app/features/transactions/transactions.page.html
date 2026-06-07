@@ -35,16 +35,16 @@
     <ion-list lines="none">
       @for (tx of group.items; track tx.id) {
         <ion-item button (click)="openDetail(tx.id)" detail="false">
-          <div class="tx-icon" slot="start" [style.background]="tx.categoryColor + '22'">
-            <ion-icon [name]="tx.categoryIcon" [style.color]="tx.categoryColor" />
+          <div class="tx-icon" slot="start">
+            <ion-icon [name]="tx.categoryIcon" />
           </div>
+          <ion-label>
+            <div class="tx-merchant">{{ tx.merchant }}</div>
+            <div class="tx-sub">{{ tx.category }} · {{ tx.time }}</div>
+          </ion-label>
           <ion-note slot="end" [class]="tx.type === 'income' ? 'tx-up' : 'tx-down'">
             {{ tx.type === 'income' ? '+' : '−' }}{{ tx.amount | currencyMxn }}
           </ion-note>
-          <div>
-            <div class="tx-merchant">{{ tx.merchant }}</div>
-            <div class="tx-sub">{{ tx.category }} · {{ tx.time }}</div>
-          </div>
         </ion-item>
       }
     </ion-list>

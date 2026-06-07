@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {
   IonContent, IonHeader, IonToolbar, IonButtons, IonButton,
   IonIcon, IonCard, IonCardContent,
@@ -7,7 +7,7 @@ import {
   IonProgressBar
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { notifications, eye, eyeOff, send, arrowDown, flash, qrCode } from 'ionicons/icons';
+import { notifications, eye, eyeOff, send, arrowDown, flash, qrCode, trendingUp } from 'ionicons/icons';
 import { DataService } from '../../core/services/data.service';
 import { CurrencyMxnPipe } from '../../shared/pipes/currency-mxn.pipe';
 
@@ -16,7 +16,7 @@ import { CurrencyMxnPipe } from '../../shared/pipes/currency-mxn.pipe';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   imports: [
-    IonContent, IonHeader, IonToolbar, IonButtons, IonButton,
+    RouterLink, IonContent, IonHeader, IonToolbar, IonButtons, IonButton,
     IonIcon, IonCard, IonCardContent,
     IonGrid, IonRow, IonCol, IonList, IonItem, IonLabel, IonNote,
     IonProgressBar, CurrencyMxnPipe,
@@ -29,7 +29,7 @@ export class HomePage {
   balanceHidden = false;
 
   constructor() {
-    addIcons({ notifications, eye, eyeOff, send, arrowDown, flash, qrCode });
+    addIcons({ notifications, eye, eyeOff, send, arrowDown, flash, qrCode, trendingUp });
   }
 
   toggleBalance(): void {

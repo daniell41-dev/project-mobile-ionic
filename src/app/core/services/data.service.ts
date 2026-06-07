@@ -77,7 +77,7 @@ export class DataService {
       expiryMonth: '09',
       expiryYear: '28',
       balance: 48250.75,
-      creditAvailable: 0,
+      creditAvailable: 32000,
       frozen: false,
       onlinePurchases: true,
     },
@@ -142,21 +142,21 @@ export class DataService {
   ]);
 
   readonly statsCategories = signal([
-    { name: 'Alimentos',       percent: 32, amount: 2030, color: '#4C8DFF' },
-    { name: 'Transporte',      percent: 18, amount: 1143, color: '#3FD1A0' },
-    { name: 'Entretenimiento', percent: 15, amount:  952, color: '#F5A623' },
-    { name: 'Compras',         percent: 20, amount: 1270, color: '#9B59B6' },
-    { name: 'Servicios',       percent: 10, amount:  635, color: '#FF8A8A' },
-    { name: 'Otros',           percent: 5,  amount:  320, color: '#626C7C' },
+    { name: 'Compras',       percent: 32, amount: 4180, color: '#4C8DFF' },
+    { name: 'Servicios',     percent: 18, amount: 2350, color: '#3FD1A0' },
+    { name: 'Transporte',    percent: 15, amount: 1960, color: '#F5A623' },
+    { name: 'Comida',        percent: 13, amount: 1700, color: '#B98BFF' },
+    { name: 'Suscripciones', percent: 9,  amount: 1175, color: '#FF8A8A' },
+    { name: 'Otros',         percent: 13, amount: 1700, color: '#7C879A' },
   ]);
 
   readonly statsMonthly = signal([
-    { month: 'Ene', amount: 9200 },
-    { month: 'Feb', amount: 7800 },
-    { month: 'Mar', amount: 11400 },
-    { month: 'Abr', amount: 8600 },
-    { month: 'May', amount: 10200 },
-    { month: 'Jun', amount: 6350, current: true },
+    { month: 'Ene', amount: 5500 },
+    { month: 'Feb', amount: 7200 },
+    { month: 'Mar', amount: 4800 },
+    { month: 'Abr', amount: 8400 },
+    { month: 'May', amount: 6600 },
+    { month: 'Jun', amount: 9300, current: true },
   ]);
 
   getTransactionById(id: string): Transaction | undefined {

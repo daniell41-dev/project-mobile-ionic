@@ -2,7 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   IonContent, IonHeader, IonToolbar, IonTitle, IonButtons,
-  IonIcon, IonSearchbar, IonList, IonItem, IonNote,
+  IonIcon, IonSearchbar, IonList, IonItem, IonLabel, IonNote,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { notifications } from 'ionicons/icons';
@@ -20,7 +20,7 @@ export interface TxGroup { label: string; items: Transaction[]; }
   styleUrls: ['transactions.page.scss'],
   imports: [
     IonContent, IonHeader, IonToolbar, IonTitle, IonButtons,
-    IonIcon, IonSearchbar, IonList, IonItem, IonNote, CurrencyMxnPipe,
+    IonIcon, IonSearchbar, IonList, IonItem, IonLabel, IonNote, CurrencyMxnPipe,
   ],
 })
 export class TransactionsPage {

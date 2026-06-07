@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
-  <div class="login-wrap">
-    <button class="back-btn" (click)="goBack()">
+  <div class="onb">
+    <button class="iconbtn back" (click)="goBack()">
       <ion-icon name="arrow-back-outline" />
     </button>
 
@@ -13,7 +13,7 @@
       <!-- Email -->
       <div class="field">
         <label>Correo electrónico</label>
-        <div class="input-wrap" [class.error]="form.controls.email.touched && form.controls.email.invalid">
+        <div class="input" [class.error]="form.controls.email.touched && form.controls.email.invalid">
           <ion-icon name="mail-outline" class="input-icon" />
           <input
             type="email"
@@ -30,7 +30,7 @@
       <!-- Contraseña -->
       <div class="field">
         <label>Contraseña</label>
-        <div class="input-wrap" [class.error]="form.controls.password.touched && form.controls.password.invalid">
+        <div class="input" [class.error]="form.controls.password.touched && form.controls.password.invalid">
           <ion-icon name="lock-closed-outline" class="input-icon" />
           <input
             [type]="showPassword() ? 'text' : 'password'"
@@ -57,21 +57,23 @@
         <div class="error-banner">{{ error() }}</div>
       }
 
-      <ion-button expand="block" type="submit" [disabled]="loading()">
+      <button class="btn" type="submit" [disabled]="loading()">
         @if (loading()) { <ion-spinner name="crescent" /> } @else { Entrar }
-      </ion-button>
+      </button>
     </form>
+
+    <div class="spacer"></div>
 
     <div class="divider">
       <hr /><span>o continúa con</span><hr />
     </div>
 
     <div class="social">
-      <button class="btn-ghost" (click)="loginSocial()">
+      <button class="btn ghost" (click)="loginSocial()">
         <ion-icon name="logo-apple" />
         Apple
       </button>
-      <button class="btn-ghost" (click)="loginSocial()">
+      <button class="btn ghost" (click)="loginSocial()">
         <ion-icon name="globe-outline" />
         Google
       </button>

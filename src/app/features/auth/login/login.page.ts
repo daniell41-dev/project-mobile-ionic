@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
-  IonContent, IonButton, IonIcon, IonSpinner,
+  IonContent, IonIcon, IonSpinner,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { mailOutline, lockClosedOutline, eyeOutline, eyeOffOutline, logoApple, globeOutline, arrowBackOutline } from 'ionicons/icons';
@@ -14,7 +14,7 @@ import { AuthService } from '../../../core/services/auth.service';
   templateUrl: 'login.page.html',
   styleUrls: ['login.page.scss'],
   imports: [
-    ReactiveFormsModule, IonContent, IonButton, IonIcon, IonSpinner,
+    ReactiveFormsModule, IonContent, IonIcon, IonSpinner,
   ],
 })
 export class LoginPage {

@@ -15,8 +15,8 @@
 <ion-content>
   @if (tx(); as t) {
     <div class="tx-hero">
-      <div class="tx-icon" [style.background]="t.categoryColor + '22'">
-        <ion-icon [name]="t.categoryIcon" [style.color]="t.categoryColor" />
+      <div class="tx-icon">
+        <ion-icon [name]="t.categoryIcon" />
       </div>
       <div class="tx-amount amount" [class]="t.type === 'income' ? 'up' : 'down'">
         {{ t.type === 'income' ? '+' : '−' }}{{ t.amount | currencyMxn }}
@@ -52,14 +52,13 @@
     </ion-list>
 
     <div class="actions">
-      <ion-button expand="block" fill="outline">
-        <ion-icon name="download" slot="start" />
+      <button class="btn ghost">
+        <ion-icon name="download" />
         Descargar comprobante
-      </ion-button>
-      <ion-button expand="block" fill="outline" color="danger" class="ion-margin-top">
-        <ion-icon name="warning" slot="start" />
+      </button>
+      <button class="btn ghost danger">
         Reportar un problema
-      </ion-button>
+      </button>
     </div>
   } @else {
     <p class="ion-text-center ion-padding">Movimiento no encontrado</p>
