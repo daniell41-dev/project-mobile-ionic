@@ -1,4 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
+import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import {
@@ -19,6 +20,7 @@ import { AuthService } from '../../../core/services/auth.service';
 export class LoginPage {
   private auth = inject(AuthService);
   private router = inject(Router);
+  private location = inject(Location);
   private fb = inject(FormBuilder);
 
   loading = signal(false);
@@ -48,8 +50,9 @@ export class LoginPage {
     }
   }
 
+  goBack(): void { this.location.back(); }
+
   async loginSocial(): Promise<void> {
-    // Demo: same as password login
     await this.auth.login('demo@nimbo.mx', 'nimbo123');
     this.router.navigateByUrl('/tabs/home', { replaceUrl: true });
   }

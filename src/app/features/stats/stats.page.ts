@@ -1,9 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton,
+  IonContent, IonHeader, IonToolbar, IonTitle, IonButtons,
   IonSegment, IonSegmentButton, IonLabel, IonCard, IonCardContent,
-  IonIcon, IonBadge,
+  IonIcon,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { notifications, trendingUpOutline, flameOutline } from 'ionicons/icons';
@@ -17,9 +17,9 @@ type Period = 'week' | 'month' | 'year';
   templateUrl: 'stats.page.html',
   styleUrls: ['stats.page.scss'],
   imports: [
-    IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton,
+    IonContent, IonHeader, IonToolbar, IonTitle, IonButtons,
     IonSegment, IonSegmentButton, IonLabel, IonCard, IonCardContent,
-    IonIcon, IonBadge, CurrencyMxnPipe,
+    IonIcon, CurrencyMxnPipe,
   ],
 })
 export class StatsPage {

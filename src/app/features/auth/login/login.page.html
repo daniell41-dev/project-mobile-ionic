@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">
   <div class="login-wrap">
-    <button class="back-btn" onclick="history.back()">
+    <button class="back-btn" (click)="goBack()">
       <ion-icon name="arrow-back-outline" />
     </button>
 
@@ -67,14 +67,14 @@
     </div>
 
     <div class="social">
-      <ion-button fill="outline" expand="block" (click)="loginSocial()">
-        <ion-icon name="logo-apple" slot="start" />
+      <button class="btn-ghost" (click)="loginSocial()">
+        <ion-icon name="logo-apple" />
         Apple
-      </ion-button>
-      <ion-button fill="outline" expand="block" (click)="loginSocial()">
-        <ion-icon name="globe-outline" slot="start" />
+      </button>
+      <button class="btn-ghost" (click)="loginSocial()">
+        <ion-icon name="globe-outline" />
         Google
-      </ion-button>
+      </button>
     </div>
   </div>
 </ion-content>

@@ -1,8 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import {
-  IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton,
-  IonList, IonItem, IonLabel, IonIcon, IonNote, IonBadge,
+  IonContent, IonHeader, IonToolbar, IonTitle, IonButtons,
+  IonList, IonItem, IonLabel, IonIcon, IonNote,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
@@ -17,12 +17,13 @@ import { CurrencyMxnPipe } from '../../shared/pipes/currency-mxn.pipe';
   templateUrl: 'cards.page.html',
   styleUrls: ['cards.page.scss'],
   imports: [
-    RouterLink, IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton,
-    IonList, IonItem, IonLabel, IonIcon, IonNote, IonBadge, CurrencyMxnPipe,
+    IonContent, IonHeader, IonToolbar, IonTitle, IonButtons,
+    IonList, IonItem, IonLabel, IonIcon, IonNote, CurrencyMxnPipe,
   ],
 })
 export class CardsPage {
   data = inject(DataService);
+  private router = inject(Router);
 
   frozen = signal<boolean>(false);
   onlinePurchases = signal<boolean>(true);
@@ -41,4 +42,5 @@ export class CardsPage {
 
   toggleFrozen(value: boolean): void { this.frozen.set(value); }
   toggleOnline(value: boolean): void { this.onlinePurchases.set(value); }
+  openNotifications(): void { this.router.navigateByUrl('/notifications'); }
 }

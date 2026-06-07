@@ -1,18 +1,16 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-avatar class="header-avatar">
-        <span>{{ data.user().avatarInitials }}</span>
-      </ion-avatar>
+      <div class="header-avatar"><span>{{ data.user().avatarInitials }}</span></div>
       <ion-label class="header-greeting">
         <span class="dim">Hola,</span> {{ data.user().firstName }}
       </ion-label>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button (click)="openNotifications()">
-        <ion-icon name="notifications" slot="icon-only" />
-        <ion-badge color="danger">3</ion-badge>
-      </ion-button>
+      <button class="iconbtn" (click)="openNotifications()">
+        <ion-icon name="notifications" />
+        <span class="badge">3</span>
+      </button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

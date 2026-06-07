@@ -65,3 +65,47 @@ ion-card {
   border-radius: var(--nimbo-radius-lg);
   box-shadow: var(--nimbo-shadow-card);
 }
+
+// ─── Botón ícono (campanita de notificaciones en todos los tabs) ──────────────
+.iconbtn {
+  position: relative;
+  width: 40px; height: 40px;
+  border-radius: 13px;
+  background: var(--nimbo-surface-2);
+  border: 1px solid var(--nimbo-hairline);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  color: var(--nimbo-text);
+  padding: 0;
+
+  ion-icon { font-size: 20px; }
+
+  .badge {
+    position: absolute; top: -4px; right: -4px;
+    min-width: 16px; height: 16px; padding: 0 4px;
+    border-radius: 999px;
+    background: var(--nimbo-down);
+    color: #fff; font-size: 10px; font-weight: 700;
+    border: 2px solid var(--nimbo-bg);
+    display: flex; align-items: center; justify-content: center;
+    line-height: 1;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+}
+
+// ─── Botón ghost (superficie oscura, borde hairline) ─────────────────────────
+.btn-ghost {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; height: 52px;
+  border-radius: var(--nimbo-radius-md);
+  background: var(--nimbo-surface-2);
+  border: 1px solid var(--nimbo-hairline);
+  color: var(--nimbo-text);
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 16px; font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.15s;
+  &:active { opacity: 0.7; }
+
+  ion-icon { font-size: 19px; }
+}

@@ -2,10 +2,10 @@
   <ion-toolbar>
     <ion-title>Tarjetas</ion-title>
     <ion-buttons slot="end">
-      <ion-button routerLink="/notifications">
-        <ion-icon name="notifications" slot="icon-only" />
-        <ion-badge color="danger">3</ion-badge>
-      </ion-button>
+      <button class="iconbtn" (click)="openNotifications()">
+        <ion-icon name="notifications" />
+        <span class="badge">3</span>
+      </button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

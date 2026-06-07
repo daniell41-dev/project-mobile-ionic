@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { IonContent, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { walletOutline } from 'ionicons/icons';
+import { wallet } from 'ionicons/icons';
 
 @Component({
   selector: 'app-onboarding',
@@ -14,7 +14,7 @@ export class OnboardingPage {
   private router = inject(Router);
 
   constructor() {
-    addIcons({ walletOutline });
+    addIcons({ wallet });
   }
 
   goToLogin(): void {

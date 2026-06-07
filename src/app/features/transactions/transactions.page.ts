@@ -1,8 +1,8 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton,
-  IonIcon, IonSearchbar, IonList, IonItem, IonNote, IonBadge,
+  IonContent, IonHeader, IonToolbar, IonTitle, IonButtons,
+  IonIcon, IonSearchbar, IonList, IonItem, IonNote,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { notifications } from 'ionicons/icons';
@@ -19,8 +19,8 @@ export interface TxGroup { label: string; items: Transaction[]; }
   templateUrl: 'transactions.page.html',
   styleUrls: ['transactions.page.scss'],
   imports: [
-    IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton,
-    IonIcon, IonSearchbar, IonList, IonItem, IonNote, IonBadge, CurrencyMxnPipe,
+    IonContent, IonHeader, IonToolbar, IonTitle, IonButtons,
+    IonIcon, IonSearchbar, IonList, IonItem, IonNote, CurrencyMxnPipe,
   ],
 })
 export class TransactionsPage {

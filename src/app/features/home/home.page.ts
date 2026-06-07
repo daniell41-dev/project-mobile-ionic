@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   IonContent, IonHeader, IonToolbar, IonButtons, IonButton,
-  IonIcon, IonBadge, IonAvatar, IonCard, IonCardContent,
+  IonIcon, IonCard, IonCardContent,
   IonGrid, IonRow, IonCol, IonList, IonItem, IonLabel, IonNote,
   IonProgressBar
 } from '@ionic/angular/standalone';
@@ -17,7 +17,7 @@ import { CurrencyMxnPipe } from '../../shared/pipes/currency-mxn.pipe';
   styleUrls: ['home.page.scss'],
   imports: [
     IonContent, IonHeader, IonToolbar, IonButtons, IonButton,
-    IonIcon, IonBadge, IonAvatar, IonCard, IonCardContent,
+    IonIcon, IonCard, IonCardContent,
     IonGrid, IonRow, IonCol, IonList, IonItem, IonLabel, IonNote,
     IonProgressBar, CurrencyMxnPipe,
   ],

@@ -25,15 +25,15 @@ ion-content {
 }
 
 .logo {
-  width: 72px;
-  height: 72px;
-  border-radius: var(--nimbo-radius-lg);
-  background: rgba(76, 141, 255, 0.14);
-  border: 1px solid rgba(76, 141, 255, 0.25);
+  width: 76px;
+  height: 76px;
+  border-radius: 24px;
+  background: linear-gradient(140deg, #4C8DFF, #1F5BC0);
+  box-shadow: 0 16px 40px -12px rgba(76, 141, 255, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
-  ion-icon { font-size: 36px; color: var(--nimbo-accent); }
+  ion-icon { font-size: 38px; color: #fff; }
 }
 
 h1 {
@@ -71,6 +71,8 @@ p {
   gap: 12px;
 
   ion-button { --border-radius: var(--nimbo-radius-md); }
+
+  .btn-ghost { border-radius: var(--nimbo-radius-md); }
 }
 
 .legal {
