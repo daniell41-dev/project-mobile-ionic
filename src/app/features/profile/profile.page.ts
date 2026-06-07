@@ -41,8 +41,8 @@ export class ProfilePage {
     this.theme.setTheme(isDark ? 'dark' : 'light');
   }
 
-  logout(): void {
-    this.auth.logout();
+  async logout(): Promise<void> {
+    await this.auth.logout();
     this.router.navigateByUrl('/onboarding', { replaceUrl: true });
   }
 }
