@@ -66,6 +66,13 @@ ion-card {
   box-shadow: var(--nimbo-shadow-card);
 }
 
+// Botones: el diseño Nimbo usa mayúscula/minúscula normal, no MAYÚSCULAS.
+ion-button {
+  text-transform: none;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
 // ─── Botón ícono (campanita de notificaciones en todos los tabs) ──────────────
 .iconbtn {
   position: relative;
