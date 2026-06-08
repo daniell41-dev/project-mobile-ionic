@@ -50,8 +50,22 @@ pnpm lint && pnpm build
 ## Entorno Claude Code on the web
 
 - Cada sesión trabaja sobre su **rama de sesión asignada** y solo hace push a ella.
-- Claude commitea a esa rama; **el usuario** abre y mergea los PRs hacia `develop`/`main`.
-- No crear PRs salvo que el usuario lo pida explícitamente.
+
+### Flujo de trabajo Git (OBLIGATORIO en cada tarea)
+
+Claude sigue **siempre** este flujo, sin que el usuario tenga que pedirlo:
+
+1. **Claude crea un issue** describiendo el trabajo a realizar (o el bug a corregir).
+2. **Claude trabaja en la rama de sesión** y commitea (Conventional Commits).
+3. **Claude crea el PR: rama de sesión → `develop`** (referencia el/los issue con
+   `Closes #N`). ← *aquí el usuario revisa.*
+4. **El usuario** aprueba y mergea a `develop`.
+5. Cuando `develop` está listo para producción, se crea el PR **`develop` → `main`**
+   (lo crea el usuario, o Claude **solo si el usuario lo pide explícitamente**). ← *este
+   es el PR que el usuario lleva a `main`.*
+
+> **Nota:** la única excepción a "Claude crea el PR" es el paso 5 (`develop → main`),
+> que requiere petición explícita. Los pasos 1–3 (issue + PR a `develop`) son automáticos.
 
 ## Documentación del repo
 
