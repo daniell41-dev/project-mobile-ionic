@@ -1,6 +1,12 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>Análisis</ion-title>
+    <ion-buttons slot="end">
+      <button class="iconbtn" (click)="openNotifications()">
+        <ion-icon name="notifications" />
+        <span class="badge">3</span>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -11,14 +17,18 @@
     <ion-segment-button value="year"><ion-label>Año</ion-label></ion-segment-button>
   </ion-segment>
 
-  <!-- Donut gasto por categoría -->
+  <!-- Gasto por categoría -->
+  <div class="section-title">
+    <h2>Gasto por categoría</h2>
+    <span class="muted">Junio</span>
+  </div>
   <ion-card>
     <ion-card-content>
       <div class="donut-section">
         <div class="donut" [style.background]="donutGradient">
           <div class="donut-center">
-            <span class="donut-label">Total</span>
-            <span class="donut-value amount">{{ totalSpent | currencyMxn }}</span>
+            <span class="donut-value">{{ totalSpent | currencyMxn }}</span>
+            <span class="donut-label">total gastado</span>
           </div>
         </div>
         <div class="legend">
@@ -34,10 +44,16 @@
     </ion-card-content>
   </ion-card>
 
-  <!-- Barras gasto mensual -->
+  <!-- Gasto mensual -->
+  <div class="section-title">
+    <h2>Gasto mensual</h2>
+    <span class="trend-tag">
+      <ion-icon name="trending-up-outline" />
+      −8% vs may
+    </span>
+  </div>
   <ion-card>
     <ion-card-content>
-      <div class="bars-title">Gasto mensual</div>
       <div class="bars">
         @for (m of data.statsMonthly(); track m.month) {
           <div class="bar-col">
@@ -52,13 +68,13 @@
   </ion-card>
 
   <!-- Tip de ahorro -->
+  <div class="section-title"><h2>Tip de ahorro</h2></div>
   <ion-card class="tip-card">
     <ion-card-content>
-      <ion-icon name="bulb" class="tip-icon" />
-      <div>
-        <div class="tip-title">Tip de ahorro</div>
-        <p>Gastaste 18% menos este mes. Si mantienes el ritmo, alcanzarás tu meta antes.</p>
+      <div class="tip-ic-wrap">
+        <ion-icon name="flame-outline" />
       </div>
+      <p>Gastaste <strong>$199.00</strong> en suscripciones que no usaste este mes. ¿Las revisamos?</p>
     </ion-card-content>
   </ion-card>
 </ion-content>

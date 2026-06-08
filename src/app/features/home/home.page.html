@@ -1,18 +1,14 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-avatar class="header-avatar">
-        <span>{{ data.user().avatarInitials }}</span>
-      </ion-avatar>
-      <ion-label class="header-greeting">
-        <span class="dim">Hola,</span> {{ data.user().firstName }}
-      </ion-label>
+      <div class="header-avatar"><span>{{ data.user().avatarInitials }}</span></div>
+      <ion-label class="header-greeting">Hola, {{ data.user().firstName }}</ion-label>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button (click)="openNotifications()">
-        <ion-icon name="notifications" slot="icon-only" />
-        <ion-badge color="danger">3</ion-badge>
-      </ion-button>
+      <button class="iconbtn" (click)="openNotifications()">
+        <ion-icon name="notifications" />
+        <span class="badge">3</span>
+      </button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -30,10 +26,11 @@
       <div class="balance-amount amount">
         {{ balanceHidden ? '$ •••••••' : (data.balance() | currencyMxn) }}
       </div>
-      <div class="balance-footer">
-        <span class="balance-change">+{{ data.balanceChange() }}% este mes</span>
-        <span class="balance-clabe">CLABE ·· {{ data.user().clabe.slice(-4) }}</span>
+      <div class="balance-sub">
+        <span class="pill"><ion-icon name="trending-up" /> +{{ data.balanceChange() }}%</span>
+        <span>este mes</span>
       </div>
+      <div class="balance-clabe">CLABE ·· {{ data.user().clabe.slice(-4) }}</div>
     </ion-card-content>
   </ion-card>
 
@@ -62,7 +59,7 @@
   <!-- Meta de ahorro -->
   <div class="section-header">
     <span>Meta de ahorro</span>
-    <ion-button fill="clear" size="small">Ver</ion-button>
+    <a class="section-link" routerLink="/tabs/cards">Ver</a>
   </div>
   @if (data.savingsGoals().length > 0) {
     @let goal = data.savingsGoals()[0];
@@ -88,13 +85,13 @@
   <!-- Movimientos recientes -->
   <div class="section-header">
     <span>Movimientos recientes</span>
-    <ion-button fill="clear" size="small" routerLink="/tabs/transactions">Ver todos</ion-button>
+    <a class="section-link" routerLink="/tabs/transactions">Ver todos</a>
   </div>
   <ion-list lines="none" class="tx-list">
     @for (tx of recentTransactions; track tx.id) {
       <ion-item button (click)="openTxDetail(tx.id)" detail="false">
-        <div class="tx-icon" slot="start" [style.background]="tx.categoryColor + '22'">
-          <ion-icon [name]="tx.categoryIcon" [style.color]="tx.categoryColor" />
+        <div class="tx-icon" slot="start">
+          <ion-icon [name]="tx.categoryIcon" />
         </div>
         <ion-label>
           <div class="tx-merchant">{{ tx.merchant }}</div>

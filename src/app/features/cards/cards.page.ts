@@ -1,10 +1,14 @@
 import { Component, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
 import {
-  IonContent, IonHeader, IonToolbar, IonTitle, IonList, IonItem,
-  IonLabel, IonToggle, IonGrid, IonRow, IonCol, IonIcon,
+  IonContent, IonHeader, IonToolbar, IonTitle, IonButtons,
+  IonList, IonItem, IonLabel, IonIcon, IonNote,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { lockClosed, globe, keypad, copy, options, card } from 'ionicons/icons';
+import {
+  walletOutline, snowOutline, globeOutline, lockClosedOutline,
+  copyOutline, trendingUpOutline, cardOutline, notifications,
+} from 'ionicons/icons';
 import { DataService } from '../../core/services/data.service';
 import { CurrencyMxnPipe } from '../../shared/pipes/currency-mxn.pipe';
 
@@ -13,18 +17,22 @@ import { CurrencyMxnPipe } from '../../shared/pipes/currency-mxn.pipe';
   templateUrl: 'cards.page.html',
   styleUrls: ['cards.page.scss'],
   imports: [
-    IonContent, IonHeader, IonToolbar, IonTitle, IonList, IonItem,
-    IonLabel, IonToggle, IonGrid, IonRow, IonCol, IonIcon, CurrencyMxnPipe,
+    IonContent, IonHeader, IonToolbar, IonTitle, IonButtons,
+    IonList, IonItem, IonLabel, IonIcon, IonNote, CurrencyMxnPipe,
   ],
 })
 export class CardsPage {
   data = inject(DataService);
+  private router = inject(Router);
 
   frozen = signal<boolean>(false);
   onlinePurchases = signal<boolean>(true);
 
   constructor() {
-    addIcons({ lockClosed, globe, keypad, copy, options, card });
+    addIcons({
+      walletOutline, snowOutline, globeOutline, lockClosedOutline,
+      copyOutline, trendingUpOutline, cardOutline, notifications,
+    });
     const c = this.data.cards()[0];
     if (c) {
       this.frozen.set(c.frozen);
@@ -32,11 +40,7 @@ export class CardsPage {
     }
   }
 
-  toggleFrozen(value: boolean): void {
-    this.frozen.set(value);
-  }
-
-  toggleOnline(value: boolean): void {
-    this.onlinePurchases.set(value);
-  }
+  toggleFrozen(value: boolean): void { this.frozen.set(value); }
+  toggleOnline(value: boolean): void { this.onlinePurchases.set(value); }
+  openNotifications(): void { this.router.navigateByUrl('/notifications'); }
 }

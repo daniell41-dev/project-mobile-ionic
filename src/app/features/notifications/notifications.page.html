@@ -14,7 +14,7 @@
   <ion-list lines="none">
     @for (n of data.notifications(); track n.id) {
       <ion-item>
-        <div class="notif-icon" slot="start" [style.background]="n.iconColor + '22'">
+        <div class="notif-icon" slot="start">
           <ion-icon [name]="n.icon" [style.color]="n.iconColor" />
         </div>
         <ion-label class="ion-text-wrap">

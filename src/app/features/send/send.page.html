@@ -1,18 +1,27 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/home" text="" />
+      @if (step() === 2) {
+        <ion-button (click)="step.set(1)">
+          <ion-icon name="arrow-back-outline" slot="icon-only" />
+        </ion-button>
+      } @else {
+        <ion-back-button defaultHref="/tabs/home" text="" />
+      }
     </ion-buttons>
-    <ion-title>Enviar dinero</ion-title>
+    <ion-title>{{ step() === 1 ? 'Enviar dinero' : 'Enviar' }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
+<!-- ── Paso 1: seleccionar contacto ──────────────────────────────────────────-->
 @if (step() === 1) {
   <ion-content>
-    <ion-searchbar placeholder="Buscar contacto" animated />
+    <div class="search-pad">
+      <ion-searchbar placeholder="Nombre, teléfono o CLABE" animated />
+    </div>
 
-    <div class="section-label">Recientes</div>
-    <div class="recents">
+    <!-- Recientes: scroll horizontal -->
+    <div class="recents-scroll">
       @for (c of data.getRecentContacts(); track c.id) {
         <div class="recent-item" (click)="selectContact(c)">
           <div class="avatar">{{ c.initials }}</div>
@@ -36,41 +45,39 @@
   </ion-content>
 }
 
+<!-- ── Paso 2: ingresar monto ────────────────────────────────────────────────-->
 @if (step() === 2) {
   <ion-content class="send-step2">
-    @if (selectedContact(); as c) {
-      <div class="recipient-chip">{{ c.name }}</div>
-    }
-    <div class="amount-display amount">
-      {{ amount() === '0' ? '$0' : '$' + amount() }}
+    <div class="amount-area">
+      @if (selectedContact(); as c) {
+        <div class="recipient-chip">
+          <div class="avatar-sm">{{ c.initials }}</div>
+          <span>{{ c.name }}</span>
+        </div>
+      }
+      <div class="amount-display">
+        <span class="cur">$</span>{{ amount() === '0' ? '0' : amount() }}
+      </div>
+      <div class="balance-hint">Saldo disponible {{ data.balance() | currencyMxn }}</div>
     </div>
-    <div class="balance-hint">Saldo: {{ data.balance() | currencyMxn }}</div>
 
-    <!-- Teclado numérico custom (no nativo) -->
-    <ion-grid class="numpad">
-      <ion-row>
-        @for (key of PAD; track key; let i = $index) {
-          @if (i % 3 === 0) {
-            <ion-col size="4" (click)="pressKey(PAD[i])">
-              <div class="numpad-key">{{ PAD[i] }}</div>
-            </ion-col>
-            <ion-col size="4" (click)="pressKey(PAD[i+1])">
-              <div class="numpad-key">{{ PAD[i+1] }}</div>
-            </ion-col>
-            <ion-col size="4" (click)="pressKey(PAD[i+2])">
-              <div class="numpad-key" [class.del]="PAD[i+2]==='del'">
-                {{ PAD[i+2] === 'del' ? '⌫' : PAD[i+2] }}
-              </div>
-            </ion-col>
+    <!-- Teclado numérico custom 4×3 (no nativo) -->
+    <div class="numpad">
+      @for (row of PAD_ROWS; track $index) {
+        <div class="numpad-row">
+          @for (key of row; track key) {
+            <div class="numpad-key" [class.del-key]="key === 'del'" (click)="pressKey(key)">
+              {{ key === 'del' ? '⌫' : key }}
+            </div>
           }
-        }
-      </ion-row>
-    </ion-grid>
+        </div>
+      }
+    </div>
   </ion-content>
 
-  <ion-footer>
+  <ion-footer class="send-footer">
     <ion-button expand="block" [disabled]="amountNumber <= 0" (click)="confirmSend()">
-      Enviar {{ amountNumber > 0 ? ('$' + amount()) : '' }}
+      Enviar {{ amountNumber > 0 ? (amountNumber | currencyMxn) : '' }}
     </ion-button>
   </ion-footer>
 }

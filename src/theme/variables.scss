@@ -30,15 +30,18 @@
 
   // Acento
   --nimbo-accent:    #4C8DFF;
+  --nimbo-accent-ink: #07101F;
 
   // Semánticos
   --nimbo-up:        #3FD1A0;
   --nimbo-down:      #FF8A8A;
+  --nimbo-up-soft:   rgba(63, 209, 160, 0.14);
 
   // Acento de marca (constante en ambos modos)
   --nimbo-accent-500: #2A6FDB;
   --nimbo-accent-400: #4C8DFF;
   --nimbo-accent-600: #1F5BC0;
+  --nimbo-accent-soft: rgba(76, 141, 255, 0.14);
 
   // Gradiente de la tarjeta de saldo
   --nimbo-card-gradient: linear-gradient(150deg, #2A6FDB, #1B3F86 60%, #14264F);
@@ -54,6 +57,7 @@
 
   // Sombra de tarjeta elevada
   --nimbo-shadow-card: 0 18px 50px -20px rgba(0, 0, 0, 0.8);
+  --nimbo-shadow-soft: 0 8px 28px -14px rgba(0, 0, 0, 0.7);
 
   // ── Mapeo a variables de Ionic ─────────────────────────────────────────────
   --ion-background-color:            var(--nimbo-bg);
@@ -103,11 +107,15 @@ body.light {
   --nimbo-text-mute: #8A94A4;
 
   --nimbo-accent:    #2A6FDB;
+  --nimbo-accent-soft: rgba(42, 111, 219, 0.12);
+  --nimbo-accent-ink: #FFFFFF;
 
   --nimbo-up:        #128C5E;
   --nimbo-down:      #D2453C;
+  --nimbo-up-soft:   rgba(18, 140, 94, 0.10);
 
-  --nimbo-shadow-card: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --nimbo-shadow-card: 0 20px 44px -22px rgba(20, 40, 90, 0.45);
+  --nimbo-shadow-soft: 0 10px 26px -16px rgba(20, 40, 90, 0.28);
 
   // Mapeo Ionic
   --ion-background-color:            var(--nimbo-bg);

@@ -6,67 +6,69 @@
 
 <ion-content>
   <!-- Cabecera -->
-  <ion-card class="profile-header">
-    <ion-card-content>
+  <div class="pad">
+    <div class="profile-card">
       <div class="avatar">{{ data.user().avatarInitials }}</div>
       <div class="user-info">
         <div class="user-name">{{ data.user().name }}</div>
         <div class="user-email">{{ data.user().email }}</div>
       </div>
       @if (data.user().verified) {
-        <ion-chip color="success" class="verified-chip">
-          <ion-icon name="checkmark-circle" />
-          <ion-label>Verificada</ion-label>
-        </ion-chip>
+        <span class="tag"><ion-icon name="checkmark" /> Verificada</span>
       }
-    </ion-card-content>
-  </ion-card>
+    </div>
+  </div>
 
   <!-- Cuenta -->
-  <ion-list lines="inset">
-    <ion-list-header>Cuenta</ion-list-header>
-    <ion-item button detail>
-      <ion-icon name="person" slot="start" class="list-icon" />
-      <ion-label>Datos personales</ion-label>
-    </ion-item>
-    <ion-item button detail>
-      <ion-icon name="business" slot="start" class="list-icon" />
-      <ion-label>Mis cuentas y CLABE</ion-label>
-    </ion-item>
-    <ion-item button detail>
-      <ion-icon name="shield-checkmark" slot="start" class="list-icon" />
-      <ion-label>Seguridad y biometría</ion-label>
-    </ion-item>
-  </ion-list>
+  <div class="section-title"><h2>Cuenta</h2></div>
+  <div class="list">
+    <div class="prow">
+      <div class="ic"><ion-icon name="person-outline" /></div>
+      <div class="t">Datos personales</div>
+      <ion-icon class="chev" name="chevron-forward" />
+    </div>
+    <div class="prow">
+      <div class="ic"><ion-icon name="business-outline" /></div>
+      <div class="t">Mis cuentas y CLABE</div>
+      <ion-icon class="chev" name="chevron-forward" />
+    </div>
+    <div class="prow">
+      <div class="ic"><ion-icon name="shield-checkmark-outline" /></div>
+      <div class="t">Seguridad y biometría</div>
+      <ion-icon class="chev" name="chevron-forward" />
+    </div>
+  </div>
 
   <!-- Preferencias -->
-  <ion-list lines="inset">
-    <ion-list-header>Preferencias</ion-list-header>
-    <ion-item>
-      <ion-icon name="moon" slot="start" class="list-icon" />
-      <ion-label>Modo oscuro</ion-label>
-      <ion-toggle [checked]="theme.isDark()" (ionChange)="toggleTheme($event.detail.checked)" slot="end" />
-    </ion-item>
-    <ion-item button detail>
-      <ion-icon name="notifications" slot="start" class="list-icon" />
-      <ion-label>Notificaciones</ion-label>
-    </ion-item>
-    <ion-item button detail>
-      <ion-icon name="globe" slot="start" class="list-icon" />
-      <ion-label>Idioma</ion-label>
-      <ion-note slot="end">Español</ion-note>
-    </ion-item>
-    <ion-item button detail>
-      <ion-icon name="help-circle" slot="start" class="list-icon" />
-      <ion-label>Ayuda y soporte</ion-label>
-    </ion-item>
-  </ion-list>
+  <div class="section-title"><h2>Preferencias</h2></div>
+  <div class="list">
+    <div class="prow" (click)="toggleTheme(!theme.isDark())">
+      <div class="ic"><ion-icon name="moon-outline" /></div>
+      <div class="t">Modo oscuro</div>
+      <div class="switch" [class.on]="theme.isDark()"><i></i></div>
+    </div>
+    <div class="prow">
+      <div class="ic"><ion-icon name="notifications-outline" /></div>
+      <div class="t">Notificaciones</div>
+      <ion-icon class="chev" name="chevron-forward" />
+    </div>
+    <div class="prow">
+      <div class="ic"><ion-icon name="globe-outline" /></div>
+      <div class="t">Idioma</div>
+      <div class="val">Español</div>
+      <ion-icon class="chev" name="chevron-forward" />
+    </div>
+    <div class="prow">
+      <div class="ic"><ion-icon name="help-circle-outline" /></div>
+      <div class="t">Ayuda y soporte</div>
+      <ion-icon class="chev" name="chevron-forward" />
+    </div>
+  </div>
 
-  <div class="logout-wrap">
-    <ion-button expand="block" fill="clear" color="danger" (click)="logout()">
-      <ion-icon name="log-out" slot="start" />
-      Cerrar sesión
-    </ion-button>
-    <span class="version">Nimbo v0.0.1</span>
+  <div class="pad logout-wrap">
+    <button class="btn ghost danger" (click)="logout()">
+      <ion-icon name="log-out-outline" /> Cerrar sesión
+    </button>
+    <div class="version">Nimbo · versión 1.0.0</div>
   </div>
 </ion-content>

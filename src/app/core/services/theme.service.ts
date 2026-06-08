@@ -13,10 +13,10 @@ export class ThemeService {
   // El tema persistido se resuelve de forma asíncrona en initialize().
   readonly theme = signal<Theme>('dark');
 
-  /** Resuelve el tema persistido (o la preferencia del sistema) y lo aplica. */
+  /** Resuelve el tema persistido y lo aplica. Por defecto, oscuro (identidad Nimbo). */
   async initialize(): Promise<void> {
     const saved = (await this.storage.get(STORAGE_KEY)) as Theme | null;
-    const theme = saved ?? (this.prefersDark() ? 'dark' : 'light');
+    const theme = saved ?? 'dark';
     this.theme.set(theme);
     this.applyTheme(theme);
   }
@@ -34,10 +34,6 @@ export class ThemeService {
 
   isDark(): boolean {
     return this.theme() === 'dark';
-  }
-
-  private prefersDark(): boolean {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
 
   private applyTheme(theme: Theme): void {

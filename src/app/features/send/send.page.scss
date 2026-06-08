@@ -1,17 +1,22 @@
+.search-pad { padding: 8px var(--nimbo-screen-pad) 0; }
+
 .section-label {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--nimbo-text-mute);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   padding: 16px var(--nimbo-screen-pad) 8px;
 }
 
-.recents {
+// ── Recientes ─────────────────────────────────────────────────────────────────
+.recents-scroll {
   display: flex;
   gap: 16px;
-  padding: 0 var(--nimbo-screen-pad) 16px;
+  padding: 12px var(--nimbo-screen-pad) 4px;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar { display: none; }
 }
 
 .recent-item {
@@ -20,90 +25,116 @@
   align-items: center;
   gap: 6px;
   cursor: pointer;
-
-  span { font-size: 12px; color: var(--nimbo-text-dim); }
+  flex: 0 0 auto;
+  span { font-size: 12px; color: var(--nimbo-text-dim); font-weight: 600; }
 }
 
+// ── Avatar ────────────────────────────────────────────────────────────────────
 .avatar {
-  width: 48px;
-  height: 48px;
+  width: 56px; height: 56px;
   border-radius: 50%;
-  background: var(--nimbo-accent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  font-weight: 700;
-  color: #fff;
+  background: var(--nimbo-accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 700; color: var(--nimbo-accent);
+  flex: 0 0 auto;
 }
 
 ion-avatar span {
   display: flex;
-  width: 100%;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  background: var(--nimbo-accent);
-  font-size: 13px;
-  font-weight: 700;
-  color: #fff;
+  width: 100%; height: 100%;
+  align-items: center; justify-content: center;
+  background: var(--nimbo-accent-soft);
+  font-size: 15px; font-weight: 700; color: var(--nimbo-accent);
   border-radius: 50%;
 }
 
-.contact-name { font-size: 14px; font-weight: 600; }
-.contact-bank { font-size: 12px; color: var(--nimbo-text-dim); }
+ion-list { background: transparent; }
+ion-list ion-item { --background: transparent; --padding-start: var(--nimbo-screen-pad); --inner-padding-end: var(--nimbo-screen-pad); }
 
-// Step 2
-.send-step2 { --padding-top: 32px; }
+.contact-name { font-size: 15px; font-weight: 600; }
+.contact-bank { font-size: 12.5px; color: var(--nimbo-text-dim); margin-top: 2px; }
+
+// ── Paso 2 ────────────────────────────────────────────────────────────────────
+.send-step2 { --padding-top: 0; --padding-start: 0; --padding-end: 0; }
+
+.amount-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px var(--nimbo-screen-pad) 8px;
+  gap: 8px;
+}
 
 .recipient-chip {
-  margin: 0 auto;
-  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   background: var(--nimbo-surface-2);
+  border: 1px solid var(--nimbo-hairline);
   border-radius: 999px;
-  padding: 6px 16px;
-  font-size: 13px;
+  padding: 6px 14px 6px 7px;
+  font-size: 14px;
   font-weight: 600;
-  margin-bottom: 24px;
+}
+
+.avatar-sm {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--nimbo-accent-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: var(--nimbo-accent);
 }
 
 .amount-display {
+  font-family: 'Sora', monospace;
   font-size: 52px;
   font-weight: 700;
-  text-align: center;
-  margin-bottom: 8px;
+  color: var(--nimbo-text);
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
 }
 
-.balance-hint {
-  text-align: center;
-  font-size: 13px;
-  color: var(--nimbo-text-dim);
-  margin-bottom: 24px;
-}
+.cur { font-size: 28px; color: var(--nimbo-text-dim); }
 
+.balance-hint { font-size: 13px; color: var(--nimbo-text-dim); }
+
+// ── Teclado numérico custom ────────────────────────────────────────────────────
 .numpad {
-  padding: 0 var(--nimbo-screen-pad);
+  padding: 8px var(--nimbo-screen-pad);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.numpad-row {
+  display: flex;
+  gap: 6px;
 }
 
 .numpad-key {
-  min-height: 56px;
+  flex: 1;
+  min-height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 22px;
-  font-weight: 500;
-  border-radius: var(--nimbo-radius-sm);
-  background: var(--nimbo-surface-2);
-  margin: 4px;
+  font-family: 'Sora', monospace;
+  font-size: 24px;
+  font-weight: 600;
+  border-radius: 14px;
+  background: transparent;
   cursor: pointer;
   user-select: none;
-  transition: opacity 0.1s;
+  transition: background 0.1s;
 
-  &:active { opacity: 0.6; }
-  &.del { font-size: 20px; background: var(--nimbo-surface-3); }
+  &:active { background: var(--nimbo-surface-2); }
+  &.del-key { font-size: 22px; }
 }
 
+// ── Footer ────────────────────────────────────────────────────────────────────
 ion-footer {
   padding: 12px var(--nimbo-screen-pad);
   background: var(--nimbo-bg);
+  border-top: 1px solid var(--nimbo-hairline);
+  ion-button { --border-radius: var(--nimbo-radius-md); }
 }

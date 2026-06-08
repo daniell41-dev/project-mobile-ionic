@@ -1,9 +1,8 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import {
-  IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton,
-  IonIcon, IonSearchbar, IonSegment, IonSegmentButton, IonLabel,
-  IonList, IonItem, IonItemDivider, IonNote,
+  IonContent, IonHeader, IonToolbar, IonTitle, IonButtons,
+  IonIcon, IonSearchbar, IonList, IonItem, IonLabel, IonNote,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { notifications } from 'ionicons/icons';
@@ -13,14 +12,15 @@ import { CurrencyMxnPipe } from '../../shared/pipes/currency-mxn.pipe';
 
 type Filter = 'all' | 'income' | 'expense';
 
+export interface TxGroup { label: string; items: Transaction[]; }
+
 @Component({
   selector: 'app-transactions',
   templateUrl: 'transactions.page.html',
   styleUrls: ['transactions.page.scss'],
   imports: [
-    IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton,
-    IonIcon, IonSearchbar, IonSegment, IonSegmentButton, IonLabel,
-    IonList, IonItem, IonNote, CurrencyMxnPipe,
+    IonContent, IonHeader, IonToolbar, IonTitle, IonButtons,
+    IonIcon, IonSearchbar, IonList, IonItem, IonLabel, IonNote, CurrencyMxnPipe,
   ],
 })
 export class TransactionsPage {
@@ -38,9 +38,9 @@ export class TransactionsPage {
     this.filter.set(value);
   }
 
-  get filtered(): Transaction[] {
+  readonly groups = computed<TxGroup[]>(() => {
     const q = this.searchQuery().toLowerCase();
-    return this.data.transactions().filter(tx => {
+    const filtered = this.data.transactions().filter(tx => {
       const matchFilter =
         this.filter() === 'all' ||
         (this.filter() === 'income' && tx.type === 'income') ||
@@ -48,7 +48,17 @@ export class TransactionsPage {
       const matchSearch = !q || tx.merchant.toLowerCase().includes(q) || tx.category.toLowerCase().includes(q);
       return matchFilter && matchSearch;
     });
-  }
+
+    // Group by day label
+    const map = new Map<string, Transaction[]>();
+    for (const tx of filtered) {
+      const key = tx.day ?? tx.date;
+      const group = map.get(key) ?? [];
+      group.push(tx);
+      map.set(key, group);
+    }
+    return Array.from(map.entries()).map(([label, items]) => ({ label, items }));
+  });
 
   openDetail(id: string): void {
     this.router.navigateByUrl(`/transactions/${id}`);
