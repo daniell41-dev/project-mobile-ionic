@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonBackButton,
@@ -28,6 +28,16 @@ export class SendPage {
   selectedContact = signal<Contact | null>(null);
   amount = signal<string>('0');
   step = signal<1 | 2>(1);
+  contactQuery = signal<string>('');
+
+  readonly filteredContacts = computed<Contact[]>(() => {
+    const q = this.contactQuery().trim().toLowerCase();
+    const contacts = this.data.contacts();
+    if (!q) return contacts;
+    return contacts.filter(c =>
+      c.name.toLowerCase().includes(q) || c.bank.toLowerCase().includes(q)
+    );
+  });
 
   // Filas del teclado numérico (estructura 4×3 correcta)
   readonly PAD_ROWS = [
