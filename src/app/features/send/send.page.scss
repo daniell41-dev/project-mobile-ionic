@@ -1,5 +1,12 @@
 .search-pad { padding: 8px var(--nimbo-screen-pad) 0; }
 
+.send-empty {
+  padding: 28px var(--nimbo-screen-pad);
+  text-align: center;
+  color: var(--nimbo-text-mute);
+  font-size: 13.5px;
+}
+
 .section-label {
   font-size: 12px;
   font-weight: 700;

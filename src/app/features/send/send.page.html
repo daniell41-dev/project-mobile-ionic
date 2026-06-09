@@ -17,7 +17,12 @@
 @if (step() === 1) {
   <ion-content>
     <div class="search-pad">
-      <ion-searchbar placeholder="Nombre, teléfono o CLABE" animated />
+      <ion-searchbar
+        placeholder="Nombre, teléfono o CLABE"
+        [value]="contactQuery()"
+        (ionInput)="contactQuery.set($event.detail.value!)"
+        animated
+      />
     </div>
 
     <!-- Recientes: scroll horizontal -->
@@ -32,7 +37,7 @@
 
     <div class="section-label">Tus contactos</div>
     <ion-list lines="none">
-      @for (c of data.contacts(); track c.id) {
+      @for (c of filteredContacts(); track c.id) {
         <ion-item button (click)="selectContact(c)" detail="false">
           <ion-avatar slot="start"><span>{{ c.initials }}</span></ion-avatar>
           <ion-label>
@@ -42,6 +47,9 @@
         </ion-item>
       }
     </ion-list>
+    @if (filteredContacts().length === 0) {
+      <div class="send-empty">Sin resultados</div>
+    }
   </ion-content>
 }
 
