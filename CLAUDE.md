@@ -58,14 +58,16 @@ Claude sigue **siempre** este flujo, sin que el usuario tenga que pedirlo:
 1. **Claude crea un issue** describiendo el trabajo a realizar (o el bug a corregir).
 2. **Claude trabaja en la rama de sesión** y commitea (Conventional Commits).
 3. **Claude crea el PR: rama de sesión → `develop`** (referencia el/los issue con
-   `Closes #N`). ← *aquí el usuario revisa.*
-4. **El usuario** aprueba y mergea a `develop`.
-5. Cuando `develop` está listo para producción, se crea el PR **`develop` → `main`**
-   (lo crea el usuario, o Claude **solo si el usuario lo pide explícitamente**). ← *este
-   es el PR que el usuario lleva a `main`.*
+   `Closes #N`).
+4. **Claude mergea el PR a `develop`** y cierra el/los issue. Todo esto es automático,
+   sin que el usuario tenga que pedirlo. ← *Claude llega solo hasta `develop`.*
+5. Cuando `develop` está listo para producción, Claude **avisa al usuario** y solo crea
+   el PR **`develop` → `main`** si el usuario lo pide explícitamente. ← *este es el único
+   PR que el usuario revisa y lleva a `main`.*
 
-> **Nota:** la única excepción a "Claude crea el PR" es el paso 5 (`develop → main`),
-> que requiere petición explícita. Los pasos 1–3 (issue + PR a `develop`) son automáticos.
+> **Regla clave:** Claude hace TODO automáticamente hasta `develop` (issue → commit →
+> PR → merge a `develop`). La **única** acción que requiere al usuario es el paso final
+> `develop → main`: Claude avisa cuando está listo y espera la petición explícita.
 
 ## Documentación del repo
 
