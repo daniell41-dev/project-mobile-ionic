@@ -23,32 +23,31 @@ ion-card { margin: 0 var(--nimbo-screen-pad) 16px; }
   border-radius: 999px;
   padding: 3px 10px;
   ion-icon { font-size: 13px; }
+  &.bad { background: rgba(255, 138, 138, 0.12); color: var(--nimbo-down); }
 }
 
 // ── Donut ─────────────────────────────────────────────────────────────────────
 .donut-section { display: flex; align-items: center; gap: 20px; }
 
-.donut {
-  width: 130px; height: 130px;
-  border-radius: 50%;
+.donut-wrap {
+  position: relative;
+  width: 130px;
+  height: 130px;
   flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .donut-center {
-  width: 84px; height: 84px;
-  border-radius: 50%;
-  background: var(--nimbo-surface);
+  position: absolute;
+  inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2px;
+  pointer-events: none;
 }
 
-.donut-value { font-size: 13px; font-weight: 700; font-family: 'Sora', monospace; }
+.donut-value { font-size: 12px; font-weight: 700; font-family: 'Sora', monospace; }
 .donut-label { font-size: 10px; color: var(--nimbo-text-dim); }
 
 .legend { flex: 1; display: flex; flex-direction: column; gap: 7px; }
@@ -59,36 +58,10 @@ ion-card { margin: 0 var(--nimbo-screen-pad) 16px; }
 .legend-pct { font-weight: 700; font-family: 'Sora', monospace; }
 
 // ── Barras ────────────────────────────────────────────────────────────────────
-.bars {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  height: 120px;
-  gap: 4px;
+.bars-wrap {
+  height: 128px;
+  position: relative;
 }
-
-.bar-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  flex: 1;
-  height: 100%;
-  justify-content: flex-end;
-}
-
-.bar-track { width: 22px; height: 100%; display: flex; align-items: flex-end; }
-
-.bar-fill {
-  width: 100%;
-  border-radius: 6px 6px 4px 4px;
-  background: var(--nimbo-surface-3);
-  opacity: 0.5;
-  transition: height 0.3s;
-  &.current { background: var(--nimbo-accent); opacity: 1; }
-}
-
-.bar-label { font-size: 11px; color: var(--nimbo-text-dim); }
 
 // ── Tip ───────────────────────────────────────────────────────────────────────
 .tip-card ion-card-content { display: flex; align-items: center; gap: 14px; }
