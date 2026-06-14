@@ -1,13 +1,22 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { User } from '../models/user.model';
 import { Transaction } from '../models/transaction.model';
 import { Card } from '../models/card.model';
 import { Contact } from '../models/contact.model';
 import { SavingsGoal } from '../models/savings-goal.model';
 import { AppNotification } from '../models/notification.model';
+import { TRANSACTION_REPOSITORY } from '../repositories/transaction.repository';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
+  private readonly txRepo = inject(TRANSACTION_REPOSITORY);
+
+  constructor() {
+    // Los movimientos se cargan desde el repositorio (patrón Repository):
+    // in-memory por defecto, o HTTP+MSW si environment.useMockApi es false.
+    // Con la implementación in-memory la emisión es síncrona (of()).
+    this.txRepo.getAll().subscribe(list => this._transactions.set(list));
+  }
 
   readonly user = signal<User>({
     id: 'u1',
@@ -22,50 +31,9 @@ export class DataService {
   readonly balance = signal<number>(48250.75);
   readonly balanceChange = signal<number>(4.2);
 
-  readonly transactions = signal<Transaction[]>([
-    {
-      id: 't1', type: 'income', amount: 18400,
-      merchant: 'Nómina · ACME S.A.', category: 'Ingresos',
-      categoryIcon: 'cash', categoryColor: '#3FD1A0',
-      date: new Date(), time: '08:02', day: 'Hoy',
-      status: 'completed', reference: 'NOM202406010001', method: 'SPEI', fee: 0,
-    },
-    {
-      id: 't2', type: 'expense', amount: 199,
-      merchant: 'Spotify Premium', category: 'Entretenimiento',
-      categoryIcon: 'musical-notes', categoryColor: '#4C8DFF',
-      date: new Date(), time: '07:41', day: 'Hoy',
-      status: 'completed', reference: 'SPT202406010001', method: 'Cargo automático', fee: 0,
-    },
-    {
-      id: 't3', type: 'expense', amount: 1250,
-      merchant: 'Mercado Pago', category: 'Compras',
-      categoryIcon: 'bag-handle', categoryColor: '#F5A623',
-      date: new Date(Date.now() - 86400000), time: '15:30', day: 'Ayer',
-      status: 'completed', reference: 'MP202405310001', method: 'Tarjeta débito', fee: 0,
-    },
-    {
-      id: 't4', type: 'expense', amount: 340,
-      merchant: 'Uber', category: 'Transporte',
-      categoryIcon: 'car', categoryColor: '#9B59B6',
-      date: new Date(Date.now() - 86400000), time: '09:15', day: 'Ayer',
-      status: 'completed', reference: 'UBR202405310002', method: 'Cargo automático', fee: 0,
-    },
-    {
-      id: 't5', type: 'expense', amount: 520,
-      merchant: 'Costco', category: 'Supermercado',
-      categoryIcon: 'storefront', categoryColor: '#E74C3C',
-      date: new Date(Date.now() - 2 * 86400000), time: '12:00', day: '4 jun',
-      status: 'completed', reference: 'CST202405300001', method: 'Tarjeta débito', fee: 0,
-    },
-    {
-      id: 't6', type: 'income', amount: 2500,
-      merchant: 'Transferencia recibida', category: 'Ingresos',
-      categoryIcon: 'cash', categoryColor: '#3FD1A0',
-      date: new Date(Date.now() - 2 * 86400000), time: '10:22', day: '4 jun',
-      status: 'completed', reference: 'TRF202405300002', method: 'SPEI', fee: 0,
-    },
-  ]);
+  // Respaldado por TransactionRepository (se hidrata en el constructor).
+  private readonly _transactions = signal<Transaction[]>([]);
+  readonly transactions = this._transactions.asReadonly();
 
   readonly cards = signal<Card[]>([
     {

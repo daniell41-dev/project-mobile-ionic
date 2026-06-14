@@ -11,22 +11,36 @@ import { AppComponent } from './app/app.component';
 import { authInterceptor } from './app/core/interceptors/auth.interceptor';
 import { AuthService } from './app/core/services/auth.service';
 import { ThemeService } from './app/core/services/theme.service';
+import { environment } from './environments/environment';
 
 registerLocaleData(localeEsMx, 'es-MX');
 
-bootstrapApplication(AppComponent, {
-  providers: [
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: LOCALE_ID, useValue: 'es-MX' },
-    provideIonicAngular(),
-    provideHttpClient(withInterceptors([authInterceptor])),
-    provideRouter(routes, withPreloading(PreloadAllModules)),
-    // Restaura sesión y tema antes del primer render para que el guard y el
-    // tema reflejen el estado persistido desde el arranque.
-    provideAppInitializer(() => {
-      const auth = inject(AuthService);
-      const theme = inject(ThemeService);
-      return Promise.all([auth.restoreSession(), theme.initialize()]);
-    }),
-  ],
-});
+/**
+ * En modo HTTP (useMockApi=false) sin backend real, MSW intercepta las
+ * peticiones REST en el navegador. Con useMockApi=true se usa el repositorio
+ * in-memory y no se arranca MSW.
+ */
+async function enableMockBackend(): Promise<void> {
+  if (environment.useMockApi) return;
+  const { startMockServiceWorker } = await import('./mocks/browser');
+  await startMockServiceWorker();
+}
+
+enableMockBackend().then(() =>
+  bootstrapApplication(AppComponent, {
+    providers: [
+      { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+      { provide: LOCALE_ID, useValue: 'es-MX' },
+      provideIonicAngular(),
+      provideHttpClient(withInterceptors([authInterceptor])),
+      provideRouter(routes, withPreloading(PreloadAllModules)),
+      // Restaura sesión y tema antes del primer render para que el guard y el
+      // tema reflejen el estado persistido desde el arranque.
+      provideAppInitializer(() => {
+        const auth = inject(AuthService);
+        const theme = inject(ThemeService);
+        return Promise.all([auth.restoreSession(), theme.initialize()]);
+      }),
+    ],
+  })
+);

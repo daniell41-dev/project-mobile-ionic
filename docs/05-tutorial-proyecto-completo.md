@@ -102,10 +102,30 @@ Estado de sesión con signals:
 - El token actual es un blob opaco (`btoa(email:timestamp)`), reemplazable por un JWT real.
 
 ### `DataService` — `data.service.ts`
-Fuente única de datos mock (señales con datos seed es-MX): `user`, `balance`, `transactions`,
-`cards`, `contacts`, `savingsGoals`, `notifications`, `statsCategories`, `statsMonthly`.
-Helpers: `getTransactionById(id)`, `getRecentContacts()`.
-> 🔜 En **FASE 4** se refactoriza a patrón Repository + REST (HttpClient/RxJS + MSW).
+Fachada de datos. Mantiene señales seed es-MX (`user`, `balance`, `cards`, `contacts`,
+`savingsGoals`, `notifications`, `statsCategories`, `statsMonthly`) y helpers
+`getTransactionById(id)`, `getRecentContacts()`.
+Los **movimientos (`transactions`)** ya **no** viven aquí: se hidratan desde
+`TransactionRepository` (ver §3.1). El signal se llena en el constructor suscribiéndose a
+`repo.getAll()`.
+
+### 3.1 Capa de datos REST — `core/repositories/` (FASE 4)
+Patrón **Repository** (GoF) que desacopla el acceso a datos de su origen:
+- `transaction.repository.ts`: **interfaz** `TransactionRepository` + **`TRANSACTION_REPOSITORY`**
+  (`InjectionToken` con `providedIn: 'root'` y `factory`). La factory elige implementación según
+  `environment.useMockApi`. Se usó interfaz + token (no clase abstracta) para evitar el ciclo de
+  imports con las implementaciones (que la referencian con `import type`).
+- `in-memory-transaction.repository.ts` (**Strategy**): sirve los datos semilla con `of()`
+  (offline, demo robusta). Es el modo por defecto.
+- `http-transaction.repository.ts` (**Strategy**): `HttpClient` → `{apiBaseUrl}/transactions`,
+  mapea DTO→modelo con el **Adapter** (`transaction.adapter.ts`, convierte la fecha ISO a `Date`).
+  Devuelve `Observable` (**RxJS**); el `authInterceptor` añade el Bearer token.
+- `transaction.seed.ts`: datos semilla (fuente de verdad de los mocks).
+
+**MSW (`src/mocks/`)**: cuando `useMockApi: false`, `main.ts` arranca el service worker de MSW
+(`assets/mockServiceWorker.js`) que **intercepta** las llamadas REST en el navegador y responde
+con los datos semilla → la capa HttpClient/RxJS se ejercita sin servidor externo. Con
+`useMockApi: true` (por defecto) se usa el repo in-memory y MSW no arranca.
 
 ### `ThemeService` — `theme.service.ts`
 Tema claro/oscuro persistente. `theme` (signal, por defecto `'dark'` = identidad Nimbo).
