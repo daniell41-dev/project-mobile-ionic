@@ -87,16 +87,21 @@ Todos son `@Injectable({ providedIn: 'root' })` (singletons, tree-shakeable). Us
 para estado reactivo (no RxJS, salvo donde se indique).
 
 ### `StorageService` — `storage.service.ts`
-Única puerta de acceso al almacenamiento (Dependency Inversion). Envuelve
-`@capacitor/preferences` (nativo seguro en móvil, `localStorage` en web).
+Almacenamiento clave-valor **no sensible** (preferencias como el tema). Única puerta de acceso
+(Dependency Inversion); envuelve `@capacitor/preferences` (`localStorage` en web).
 API: `get/set`, `getJSON<T>/setJSON<T>`, `remove`, `clear`.
-> 🔜 En **FASE 5** los datos sensibles pasarán a *secure storage* (Keystore/Keychain).
+
+### `SecureStorageService` — `secure-storage.service.ts` (FASE 5)
+Almacenamiento **seguro** para datos sensibles (el token de sesión). Respaldado por
+`@aparajita/capacitor-secure-storage`: **Keystore** (Android), **Keychain** (iOS) y un almacén
+del navegador como *fallback* web (no hay enclave seguro en web). Misma API string que
+`StorageService` (`get/set/remove/clear`) para mantener bajo acoplamiento y ser mockeable.
 
 ### `AuthService` — `auth.service.ts`
 Estado de sesión con signals:
 - `token` (readonly signal) · `isAuthenticated = computed(() => token() !== null)`.
 - `login(email, password)`: valida credenciales demo (`demo@nimbo.mx` / `nimbo123`), persiste
-  el token vía `StorageService` y actualiza el estado.
+  el token vía **`SecureStorageService`** (Keystore/Keychain) y actualiza el estado.
 - `logout()`: limpia token y storage.
 - `restoreSession()`: rehidrata el token al arrancar (lo llama `provideAppInitializer`).
 - El token actual es un blob opaco (`btoa(email:timestamp)`), reemplazable por un JWT real.

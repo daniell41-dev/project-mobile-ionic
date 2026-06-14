@@ -32,6 +32,9 @@ importers:
       '@angular/router':
         specifier: ^20.0.0
         version: 20.3.24(@angular/common@20.3.24(@angular/core@20.3.24(@angular/compiler@20.3.24)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.24(@angular/compiler@20.3.24)(rxjs@7.8.2)(zone.js@0.15.1))(@angular/platform-browser@20.3.24(@angular/animations@20.3.24(@angular/core@20.3.24(@angular/compiler@20.3.24)(rxjs@7.8.2)(zone.js@0.15.1)))(@angular/common@20.3.24(@angular/core@20.3.24(@angular/compiler@20.3.24)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.24(@angular/compiler@20.3.24)(rxjs@7.8.2)(zone.js@0.15.1)))(rxjs@7.8.2)
+      '@aparajita/capacitor-secure-storage':
+        specifier: ^8.0.0
+        version: 8.0.0
       '@capacitor/app':
         specifier: ^8.1.0
         version: 8.1.0(@capacitor/core@8.4.0)
@@ -461,6 +464,10 @@ packages:
       '@angular/core': 20.3.24
       '@angular/platform-browser': 20.3.24
       rxjs: ^6.5.3 || ^7.4.0
+
+  '@aparajita/capacitor-secure-storage@8.0.0':
+    resolution: {integrity: sha512-oYnwSjdIh23aRNgz8982+TmFvQH/2yZkEdw1iIg+H2ziFJoOVELPTc7u6Ez2HwOuDIW5AGqBX75GvrzQ+D70Qg==}
+    engines: {node: '>=20.0.0'}
 
   '@babel/code-frame@7.29.7':
     resolution: {integrity: sha512-Aup7aUOfpbAUg2ROOJN6Iw5f9DMBlzu0mIkm/malLQFN/YQgO48wCj0Kxa3sEHJvPVFg7siR+qRInwXd2qhQKw==}
@@ -979,6 +986,11 @@ packages:
     resolution: {integrity: sha512-4zBIxpPzowiZpusoFkyGVwakdRJUyuH5PxQ/PrqghfdFWWasvnCdPfQXHrenDai+gyLARulZjZowCOj6fjT4pA==}
     engines: {node: '>=6.9.0'}
 
+  '@capacitor/android@8.4.0':
+    resolution: {integrity: sha512-K1ZPkQzvRzPEALz9nBdLx5p5nAPzp5fsTYWk7LRiKZeH/NXqjDvqfTv7lrLgrziQNoDeaL6ijg64oBREzXiV+g==}
+    peerDependencies:
+      '@capacitor/core': ^8.4.0
+
   '@capacitor/app@8.1.0':
     resolution: {integrity: sha512-MlmttTOWHDedr/G4SrhNRxsXMqY+R75S4MM4eIgzsgCzOYhb/MpCkA5Q3nuOCfL1oHm26xjUzqZ5aupbOwdfYg==}
     peerDependencies:
@@ -996,6 +1008,11 @@ packages:
     resolution: {integrity: sha512-c2hZzRR5Fk1tbTvhG1jhh2XBAf3EhnIerMIb2sl7Mt41Gxx1fhBJFDa0/BI1IbY4loVepyyuqNC9820/GZuoWQ==}
     peerDependencies:
       '@capacitor/core': '>=8.0.0'
+
+  '@capacitor/ios@8.4.0':
+    resolution: {integrity: sha512-tnwstEdbTJ2nHAfoAwnurXgYRscWeLY+IIGdz69o24gN2Crfj9Xc0TWo8L5uFLF1LmpbUywH1IT0U1oHV8c+CA==}
+    peerDependencies:
+      '@capacitor/core': ^8.4.0
 
   '@capacitor/keyboard@8.0.3':
     resolution: {integrity: sha512-27Bv5/2w1Ss2njguBgTS98O0Bb8DRJhAARyzXYib0JlT/n6BrJw/EZ0CokM4C8GFUjFDjJnEKF1Ie01buTMEXQ==}
@@ -6340,6 +6357,14 @@ snapshots:
       rxjs: 7.8.2
       tslib: 2.8.1
 
+  '@aparajita/capacitor-secure-storage@8.0.0':
+    dependencies:
+      '@capacitor/android': 8.4.0(@capacitor/core@8.4.0)
+      '@capacitor/app': 8.1.0(@capacitor/core@8.4.0)
+      '@capacitor/core': 8.4.0
+      '@capacitor/ios': 8.4.0(@capacitor/core@8.4.0)
+      '@capacitor/keyboard': 8.0.3(@capacitor/core@8.4.0)
+
   '@babel/code-frame@7.29.7':
     dependencies:
       '@babel/helper-validator-identifier': 7.29.7
@@ -7051,6 +7076,10 @@ snapshots:
       '@babel/helper-string-parser': 7.29.7
       '@babel/helper-validator-identifier': 7.29.7
 
+  '@capacitor/android@8.4.0(@capacitor/core@8.4.0)':
+    dependencies:
+      '@capacitor/core': 8.4.0
+
   '@capacitor/app@8.1.0(@capacitor/core@8.4.0)':
     dependencies:
       '@capacitor/core': 8.4.0
@@ -7082,6 +7111,10 @@ snapshots:
       tslib: 2.8.1
 
   '@capacitor/haptics@8.0.2(@capacitor/core@8.4.0)':
+    dependencies:
+      '@capacitor/core': 8.4.0
+
+  '@capacitor/ios@8.4.0(@capacitor/core@8.4.0)':
     dependencies:
       '@capacitor/core': 8.4.0
 

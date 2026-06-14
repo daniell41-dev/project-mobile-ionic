@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { AuthService } from './auth.service';
-import { StorageService } from './storage.service';
+import { SecureStorageService } from './secure-storage.service';
 
-// Fake en memoria de StorageService: aísla AuthService del almacenamiento real.
-class FakeStorageService {
+// Fake en memoria del almacenamiento seguro: aísla AuthService del plugin nativo.
+class FakeSecureStorageService {
   private map = new Map<string, string>();
   get = async (key: string) => this.map.get(key) ?? null;
   set = async (key: string, value: string) => { this.map.set(key, value); };
@@ -12,12 +12,12 @@ class FakeStorageService {
 
 describe('AuthService', () => {
   let service: AuthService;
-  let storage: FakeStorageService;
+  let storage: FakeSecureStorageService;
 
   beforeEach(() => {
-    storage = new FakeStorageService();
+    storage = new FakeSecureStorageService();
     TestBed.configureTestingModule({
-      providers: [{ provide: StorageService, useValue: storage }],
+      providers: [{ provide: SecureStorageService, useValue: storage }],
     });
     service = TestBed.inject(AuthService);
   });
