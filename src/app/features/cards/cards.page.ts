@@ -10,6 +10,7 @@ import {
   copyOutline, trendingUpOutline, cardOutline, notifications,
 } from 'ionicons/icons';
 import { DataService } from '../../core/services/data.service';
+import { HapticsService } from '../../core/services/haptics.service';
 import { CurrencyMxnPipe } from '../../shared/pipes/currency-mxn.pipe';
 
 @Component({
@@ -24,6 +25,7 @@ import { CurrencyMxnPipe } from '../../shared/pipes/currency-mxn.pipe';
 export class CardsPage {
   data = inject(DataService);
   private router = inject(Router);
+  private haptics = inject(HapticsService);
 
   frozen = signal<boolean>(false);
   onlinePurchases = signal<boolean>(true);
@@ -40,7 +42,7 @@ export class CardsPage {
     }
   }
 
-  toggleFrozen(value: boolean): void { this.frozen.set(value); }
-  toggleOnline(value: boolean): void { this.onlinePurchases.set(value); }
+  toggleFrozen(value: boolean): void { this.frozen.set(value); void this.haptics.impact(); }
+  toggleOnline(value: boolean): void { this.onlinePurchases.set(value); void this.haptics.impact(); }
   openNotifications(): void { this.router.navigateByUrl('/notifications'); }
 }

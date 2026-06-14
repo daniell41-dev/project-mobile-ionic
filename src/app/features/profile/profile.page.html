@@ -8,7 +8,14 @@
   <!-- Cabecera -->
   <div class="pad">
     <div class="profile-card">
-      <div class="avatar">{{ data.user().avatarInitials }}</div>
+      <button class="avatar" (click)="changeAvatar()" aria-label="Cambiar foto de perfil">
+        @if (avatarPhoto(); as photo) {
+          <img [src]="photo" alt="Foto de perfil" />
+        } @else {
+          {{ data.user().avatarInitials }}
+        }
+        <span class="avatar-edit"><ion-icon name="camera-outline" /></span>
+      </button>
       <div class="user-info">
         <div class="user-name">{{ data.user().name }}</div>
         <div class="user-email">{{ data.user().email }}</div>

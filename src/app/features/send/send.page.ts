@@ -8,6 +8,7 @@ import {
 import { addIcons } from 'ionicons';
 import { arrowBackOutline } from 'ionicons/icons';
 import { DataService } from '../../core/services/data.service';
+import { HapticsService } from '../../core/services/haptics.service';
 import { Contact } from '../../core/models/contact.model';
 import { CurrencyMxnPipe } from '../../shared/pipes/currency-mxn.pipe';
 
@@ -24,6 +25,7 @@ import { CurrencyMxnPipe } from '../../shared/pipes/currency-mxn.pipe';
 export class SendPage {
   data = inject(DataService);
   private router = inject(Router);
+  private haptics = inject(HapticsService);
 
   selectedContact = signal<Contact | null>(null);
   amount = signal<string>('0');
@@ -76,6 +78,7 @@ export class SendPage {
   }
 
   confirmSend(): void {
+    void this.haptics.success();
     this.router.navigateByUrl('/send/done');
   }
 }
