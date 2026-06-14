@@ -21,7 +21,9 @@ log.txt
 /.ionic
 /www
 /platforms
-/plugins
+# Plugins generados por Cordova (legacy). Se versiona el plugin propio.
+/plugins/*
+!/plugins/biometric-auth/
 
 # Capacitor (plataformas nativas generadas con `npx cap add`)
 /android
