@@ -252,17 +252,27 @@ Overrides de `ion-content/header/toolbar/list/item/card/button` para heredar el 
 
 ---
 
-## 9. 🧪 Testing
+## 9. 🧪 Testing — dos runners (Jasmine/Karma + Jest)
 
-- **Runner actual:** Jasmine + Karma. Launcher headless `ChromeHeadlessNoSandbox` ya
-  configurado en `karma.conf.js` para CI.
-- **Estado:** 65 tests en verde. Specs por servicio (Auth, Storage, Data, Theme), guard,
-  interceptor, pipe, y las páginas con lógica (Transactions, Send, Cards, Notifications, Stats,
-  Profile, Tabs).
+El proyecto demuestra los tres frameworks que pide el perfil: **Jasmine + Karma** (suite
+principal) y **Jest** (runner adicional).
+
+### Karma + Jasmine — `pnpm test:ci`
+- Suite principal: **94 tests** sobre `src/**/*.spec.ts`.
+- Launcher headless `ChromeHeadlessNoSandbox` (`karma.conf.js`) para CI.
+- Cubre servicios (Auth, Storage, SecureStorage, Data, Theme, Haptics, StatusBar, Camera,
+  Biometric), repositorios (adapter, in-memory, http), guard, interceptor, pipe y las páginas.
 - **Patrones:** `TestBed` + `provideRouter([])`; dobles/fakes para aislar dependencias;
-  `HttpTestingController` para el interceptor; en Stats se evita `detectChanges()` para no
-  montar los charts sobre el `<canvas>`.
-- 🔜 **FASE 8** añade **Jest** (`pnpm test:jest`) junto a Karma.
+  `HttpTestingController` para HTTP; subclases de prueba para aislar los proxies de plugins
+  Capacitor (Camera/Biometric); en Stats se evita `detectChanges()` para no montar los charts.
+- En este entorno: `CHROME_BIN=/opt/pw-browsers/chromium-1194/chrome-linux/chrome pnpm test:ci`.
+
+### Jest — `pnpm test:jest`
+- Configurado con `jest-preset-angular` (`jest.config.js`, `setup-jest.ts`, `tsconfig.jest.json`).
+- Corre los `tests/jest/**/*.jest.ts` (lógica pura: pipe, adapter, repositorio in-memory).
+- **Aislado de Karma:** distinta extensión (`*.jest.ts`) y tsconfig propio (`types: ["jest"]`),
+  para evitar el choque de globals entre Jasmine y Jest. El `tsconfig.json` base usa
+  `types: ["jasmine"]` y excluye `tests/` del programa de Karma/ESLint.
 
 ---
 
