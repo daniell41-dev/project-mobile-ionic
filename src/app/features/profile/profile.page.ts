@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   IonContent, IonHeader, IonToolbar, IonTitle, IonIcon,
@@ -7,11 +7,12 @@ import { addIcons } from 'ionicons';
 import {
   checkmark, personOutline, businessOutline, shieldCheckmarkOutline,
   notificationsOutline, globeOutline, helpCircleOutline, moonOutline,
-  logOutOutline, chevronForward,
+  logOutOutline, chevronForward, cameraOutline,
 } from 'ionicons/icons';
 import { DataService } from '../../core/services/data.service';
 import { AuthService } from '../../core/services/auth.service';
 import { ThemeService } from '../../core/services/theme.service';
+import { CameraService } from '../../core/services/camera.service';
 
 @Component({
   selector: 'app-profile',
@@ -26,17 +27,27 @@ export class ProfilePage {
   theme = inject(ThemeService);
   private auth = inject(AuthService);
   private router = inject(Router);
+  private camera = inject(CameraService);
+
+  /** Foto de avatar capturada (data URL). Si es null se muestran las iniciales. */
+  avatarPhoto = signal<string | null>(null);
 
   constructor() {
     addIcons({
       checkmark, personOutline, businessOutline, shieldCheckmarkOutline,
       notificationsOutline, globeOutline, helpCircleOutline, moonOutline,
-      logOutOutline, chevronForward,
+      logOutOutline, chevronForward, cameraOutline,
     });
   }
 
   toggleTheme(isDark: boolean): void {
     this.theme.setTheme(isDark ? 'dark' : 'light');
+  }
+
+  /** Captura/selecciona una foto de avatar (cámara nativa o selector web). */
+  async changeAvatar(): Promise<void> {
+    const dataUrl = await this.camera.takeAvatarPhoto();
+    if (dataUrl) this.avatarPhoto.set(dataUrl);
   }
 
   async logout(): Promise<void> {

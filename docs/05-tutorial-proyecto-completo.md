@@ -135,7 +135,18 @@ con los datos semilla → la capa HttpClient/RxJS se ejercita sin servidor exter
 ### `ThemeService` — `theme.service.ts`
 Tema claro/oscuro persistente. `theme` (signal, por defecto `'dark'` = identidad Nimbo).
 `initialize()` (al arrancar), `setTheme()`, `toggle()`, `isDark()`. Aplica la clase `dark`/
-`light` sobre `<html>`; el resto se resuelve por CSS variables.
+`light` sobre `<html>` y **sincroniza la barra de estado nativa** vía `StatusBarService`.
+
+### 3.2 Integraciones nativas — servicios envoltorio (FASE 6)
+Cada funcionalidad nativa se encapsula en un servicio de `core/services/` con **graceful
+fallback en web** (`Capacitor.isNativePlatform()`), para no acoplar las páginas al plugin:
+- **`HapticsService`** (`@capacitor/haptics`): `impact()` en los toggles de tarjeta, `success()`
+  al confirmar un envío. No-op en web.
+- **`StatusBarService`** (`@capacitor/status-bar`): `apply(isDark)` ajusta el estilo de la barra
+  de estado según el tema (lo invoca `ThemeService`). Sin impl. web → no-op.
+- **`CameraService`** (`@capacitor/camera`): `takeAvatarPhoto()` abre cámara/galería (selector de
+  archivos en web) y devuelve un *data URL*; `null` si se cancela. Se usa en el avatar de Perfil.
+  El método `capture()` está aislado para poder mockearlo en tests.
 
 ---
 
