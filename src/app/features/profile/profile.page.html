@@ -39,10 +39,10 @@
       <div class="t">Mis cuentas y CLABE</div>
       <ion-icon class="chev" name="chevron-forward" />
     </div>
-    <div class="prow">
+    <div class="prow" (click)="toggleBiometric()">
       <div class="ic"><ion-icon name="shield-checkmark-outline" /></div>
       <div class="t">Seguridad y biometría</div>
-      <ion-icon class="chev" name="chevron-forward" />
+      <div class="switch" [class.on]="biometric.enabled()"><i></i></div>
     </div>
   </div>
 

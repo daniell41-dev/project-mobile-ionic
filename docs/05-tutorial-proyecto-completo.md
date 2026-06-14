@@ -148,6 +148,22 @@ fallback en web** (`Capacitor.isNativePlatform()`), para no acoplar las páginas
   archivos en web) y devuelve un *data URL*; `null` si se cancela. Se usa en el avatar de Perfil.
   El método `capture()` está aislado para poder mockearlo en tests.
 
+### 3.3 Plugin Capacitor propio — `plugins/biometric-auth/` (FASE 7)
+Plugin **desarrollado para el proyecto** que expone la autenticación biométrica del dispositivo:
+- `src/definitions.ts`: contrato (`isAvailable()`, `authenticate({ reason })`).
+- `src/web.ts`: implementación web (`WebPlugin`) — sin biometría en navegador (`available:false`,
+  `authenticate` resuelve `verified:true` para la demo).
+- `src/index.ts`: `registerPlugin('BiometricAuth', { web: ... })`.
+- `android/.../BiometricAuthPlugin.kt`: implementación nativa con `androidx.biometric.BiometricPrompt`
+  (`BIOMETRIC_STRONG`) respaldada por el **Keystore**.
+- iOS quedaría con `LocalAuthentication` (pendiente, requiere Mac).
+
+La app lo consume con un **path mapping** de TypeScript (`biometric-auth` →
+`plugins/biometric-auth/src/index.ts`) y lo envuelve en **`BiometricService`** (`core/services/`),
+que gestiona la preferencia "Seguridad y biometría" (persistida en `StorageService`) y exige una
+verificación correcta antes de activarla. La fila de Perfil es ahora un toggle.
+> Cómo construir/registrar un plugin Capacitor está documentado en `plugins/biometric-auth/README.md`.
+
 ---
 
 ## 4. 🛡️ Guard e interceptor (`core/`)

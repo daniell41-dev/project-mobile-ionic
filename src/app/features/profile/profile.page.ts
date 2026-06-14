@@ -13,6 +13,7 @@ import { DataService } from '../../core/services/data.service';
 import { AuthService } from '../../core/services/auth.service';
 import { ThemeService } from '../../core/services/theme.service';
 import { CameraService } from '../../core/services/camera.service';
+import { BiometricService } from '../../core/services/biometric.service';
 
 @Component({
   selector: 'app-profile',
@@ -28,11 +29,13 @@ export class ProfilePage {
   private auth = inject(AuthService);
   private router = inject(Router);
   private camera = inject(CameraService);
+  biometric = inject(BiometricService);
 
   /** Foto de avatar capturada (data URL). Si es null se muestran las iniciales. */
   avatarPhoto = signal<string | null>(null);
 
   constructor() {
+    void this.biometric.loadSetting();
     addIcons({
       checkmark, personOutline, businessOutline, shieldCheckmarkOutline,
       notificationsOutline, globeOutline, helpCircleOutline, moonOutline,
@@ -48,6 +51,15 @@ export class ProfilePage {
   async changeAvatar(): Promise<void> {
     const dataUrl = await this.camera.takeAvatarPhoto();
     if (dataUrl) this.avatarPhoto.set(dataUrl);
+  }
+
+  /** Activa/desactiva el bloqueo biométrico (plugin Capacitor propio). */
+  async toggleBiometric(): Promise<void> {
+    if (this.biometric.enabled()) {
+      await this.biometric.disable();
+    } else {
+      await this.biometric.enable();
+    }
   }
 
   async logout(): Promise<void> {

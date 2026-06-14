@@ -1,13 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 
+import { signal } from '@angular/core';
 import { ProfilePage } from './profile.page';
 import { ThemeService } from '../../core/services/theme.service';
 import { CameraService } from '../../core/services/camera.service';
+import { BiometricService } from '../../core/services/biometric.service';
 
 class FakeCameraService {
   result: string | null = 'data:image/png;base64,AAA';
   takeAvatarPhoto = async () => this.result;
+}
+
+class FakeBiometricService {
+  enabled = signal(false);
+  enableResult = true;
+  loadSetting = async () => { /* no-op */ };
+  enable = async () => { if (this.enableResult) this.enabled.set(true); return this.enableResult; };
+  disable = async () => { this.enabled.set(false); };
 }
 
 describe('ProfilePage', () => {
@@ -15,14 +25,17 @@ describe('ProfilePage', () => {
   let fixture: ComponentFixture<ProfilePage>;
   let theme: ThemeService;
   let camera: FakeCameraService;
+  let biometric: FakeBiometricService;
 
   beforeEach(async () => {
     camera = new FakeCameraService();
+    biometric = new FakeBiometricService();
     await TestBed.configureTestingModule({
       imports: [ProfilePage],
       providers: [
         provideRouter([]),
         { provide: CameraService, useValue: camera },
+        { provide: BiometricService, useValue: biometric },
       ],
     }).compileComponents();
 
@@ -59,5 +72,17 @@ describe('ProfilePage', () => {
     camera.result = null;
     await component.changeAvatar();
     expect(component.avatarPhoto()).toBeNull();
+  });
+
+  it('toggleBiometric enables biometric lock when verification succeeds', async () => {
+    biometric.enableResult = true;
+    await component.toggleBiometric();
+    expect(biometric.enabled()).toBeTrue();
+  });
+
+  it('toggleBiometric disables biometric lock when already enabled', async () => {
+    biometric.enabled.set(true);
+    await component.toggleBiometric();
+    expect(biometric.enabled()).toBeFalse();
   });
 });
