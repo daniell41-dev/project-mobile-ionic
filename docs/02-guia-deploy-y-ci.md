@@ -85,6 +85,10 @@ El repo incluye un workflow en `.github/workflows/ci.yml` que se ejecuta en cada
 5. `pnpm build`.
 6. `pnpm test:ci` con Chrome headless sin sandbox (`ChromeHeadlessNoSandbox`, definido en
    `karma.conf.js`). `ubuntu-latest` ya trae Chrome preinstalado.
+7. `pnpm test:jest` (runner Jest, suite de `tests/jest/`).
+
+Además, `.github/workflows/android.yml` (manual, `workflow_dispatch`) compila el **APK** de
+Android en la nube y lo publica como artifact (ver Parte 4-bis).
 
 **Recomendado en GitHub** → *Settings → Branches → Branch protection rules* para `main` y
 `develop`:
@@ -173,6 +177,53 @@ npx cap open ios       # abre Xcode (solo macOS)
 - **Android:** desde Android Studio → *Build → Generate Signed Bundle/APK* (AAB para Play
   Store, APK para pruebas). Requiere un **keystore** (NO se commitea).
 - **iOS:** desde Xcode → *Product → Archive* → distribuir.
+
+---
+
+## PARTE 4-bis: BUILD NATIVO SIN MAC (y sin Android Studio)
+
+Estrategia adoptada en este proyecto (desarrollo sin Mac, con un iPhone físico de pruebas).
+> ⚠️ **Expo no aplica**: es para React Native. Nimbo es Ionic/Angular + Capacitor.
+
+### Android sin Android Studio (solo CLI)
+Basta el **JDK 17** + **Android SDK command-line tools** (mucho más ligero que el IDE):
+
+```bash
+pnpm build && npx cap sync android
+cd android && ./gradlew assembleDebug      # APK en android/app/build/outputs/apk/debug/
+```
+
+En CI está automatizado: workflow **`.github/workflows/android.yml`** (`workflow_dispatch`)
+hace setup de JDK + Android SDK, compila y sube el **APK** como artifact descargable.
+
+### iOS sin Mac → build en la nube
+Compilar iOS exige **Xcode (solo macOS)**; sin Mac local, se usa CI en la nube que provee
+máquinas macOS para generar el `.ipa`:
+
+| Servicio | Notas |
+|----------|-------|
+| **Ionic Appflow** | Pensado para Ionic/Capacitor; build iOS/Android gestionado. |
+| **Codemagic** | Tier gratuito; `.ipa` con firma; bueno para portafolio. |
+| **GitHub Actions** `macos-latest` | Runner macOS con Xcode preinstalado. |
+
+Ejemplo (esqueleto) de job iOS en GitHub Actions:
+
+```yaml
+jobs:
+  ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build && npx cap add ios && npx cap sync ios
+      - run: xcodebuild -workspace ios/App/App.xcworkspace -scheme App -sdk iphonesimulator
+```
+
+> Para validación rápida en el iPhone 14 sin compilar nativo: abrir la **PWA** en Safari
+> (`pnpm start --host` + misma red) y "Añadir a pantalla de inicio".
 
 ---
 

@@ -35,6 +35,9 @@ importers:
       '@aparajita/capacitor-secure-storage':
         specifier: ^8.0.0
         version: 8.0.0
+      '@capacitor/android':
+        specifier: ^8.4.0
+        version: 8.4.0(@capacitor/core@8.4.0)
       '@capacitor/app':
         specifier: ^8.1.0
         version: 8.1.0(@capacitor/core@8.4.0)

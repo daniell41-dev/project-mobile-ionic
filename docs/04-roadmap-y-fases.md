@@ -42,10 +42,9 @@ actualizar `docs/05-tutorial-proyecto-completo.md` para reflejar el nuevo estado
 
 ---
 
-## 🛣️ Fases planificadas (FASE 4–9)
+## 🛣️ Fases 4–9 (cierre de gaps de la vacante) — ✅ completadas
 
-Estas fases cierran los **gaps** detectados frente a la vacante. Cada una se ejecuta de forma
-aislada con su propio ciclo issue → PR → `develop`.
+Cada fase se ejecutó de forma aislada con su propio ciclo issue → PR → `develop`.
 
 ### FASE 4 — Capa de datos REST: Repository + HttpClient/RxJS + MSW
 - **Objetivo:** sustituir los datos mock de `DataService` por una capa REST real con patrón
@@ -98,15 +97,15 @@ aislada con su propio ciclo issue → PR → `develop`.
 | Requisito de la vacante | Fase que lo cubre | Estado |
 |-------------------------|-------------------|--------|
 | Angular + TypeScript profundo | FASE 1–3 | ✅ |
-| Arquitectura limpia, modular, bajo acoplamiento | FASE 1, **4** | ✅ / 🔜 |
-| SOLID, GoF, DRY/KISS/YAGNI | FASE 1–2, **4** | 🟡 → 🔜 |
+| Arquitectura limpia, modular, bajo acoplamiento | FASE 1, 4 | ✅ |
+| SOLID, GoF, DRY/KISS/YAGNI | FASE 1–2, 4 | ✅ |
 | CSS / Flexbox / Grid / Ionic UI | Visual | ✅ |
-| CLI Ionic, build, plugins Capacitor/Cordova | **6, 7, 9** | 🔜 |
-| Desarrollo/modificación de plugins | **FASE 7** | 🔜 |
-| Integraciones nativas + SDKs de terceros | **FASE 6** | 🔜 |
-| TDD con Jest, Jasmine, Karma | Tests, **FASE 8** | 🟡 → 🔜 |
-| APIs REST (JSON), HttpClient/RxJS | **FASE 4** | 🔜 |
-| Almacenamiento seguro (secure storage, Keychain, Keystore) | **FASE 5** | 🔜 |
+| CLI Ionic, build, plugins Capacitor/Cordova | 6, 7, 9 | ✅ |
+| Desarrollo/modificación de plugins | FASE 7 | ✅ |
+| Integraciones nativas + SDKs de terceros | FASE 6 | ✅ |
+| TDD con Jest, Jasmine, Karma | Tests, FASE 8 | ✅ |
+| APIs REST (JSON), HttpClient/RxJS | FASE 4 | ✅ |
+| Almacenamiento seguro (secure storage, Keychain, Keystore) | FASE 5 | ✅ |
 | 3+ años de experiencia | — (perfil del candidato) | n/a |
 
 Leyenda: ✅ hecho · 🟡 parcial · 🔜 planificado.
