@@ -1,0 +1,12 @@
+/* TsConfig dedicado a Jest (aislado del programa de Karma/ESLint). */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/jest",
+    "module": "commonjs",
+    "types": ["jest", "node"],
+    "esModuleInterop": true,
+    "allowJs": true
+  },
+  "include": ["tests/jest/**/*.ts", "setup-jest.ts"]
+}
