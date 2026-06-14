@@ -74,4 +74,6 @@ Claude sigue **siempre** este flujo, sin que el usuario tenga que pedirlo:
 - `docs/01-flujo-git-github.md` — flujo Git/GitHub.
 - `docs/02-guia-deploy-y-ci.md` — deploy (PWA/nativo) y CI.
 - `docs/03-arquitectura-y-buenas-practicas.md` — arquitectura, convenciones, SOLID.
+- `docs/04-roadmap-y-fases.md` — **roadmap de fases (regla)**; léelo antes de trabajar.
+- `docs/05-tutorial-proyecto-completo.md` — tutorial del estado actual (documento vivo).
 - `docs/design/` — handoff de diseño de Nimbo (qué construir).

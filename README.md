@@ -71,18 +71,20 @@ La configuración de Capacitor vive en [`capacitor.config.ts`](./capacitor.confi
 ```
 src/
 ├── app/
-│   ├── tabs/                 # Layout de navegación por pestañas
-│   ├── tab1/ tab2/ tab3/     # Páginas de ejemplo del starter
-│   ├── explore-container/    # Componente de ejemplo
+│   ├── core/                 # Singletons: services, guards, interceptors, models
+│   ├── shared/               # Reutilizable (pipes, componentes presentacionales)
+│   ├── features/             # Una carpeta por feature (páginas lazy)
+│   ├── tabs/                 # Shell de navegación (ion-tabs) + tabs.routes.ts
 │   ├── app.component.ts      # Componente raíz
 │   └── app.routes.ts         # Rutas de la aplicación
-├── theme/variables.scss      # Variables de tema de Ionic
-├── global.scss               # Estilos globales
+├── theme/variables.scss      # Design tokens (--nimbo-*) y mapeo a --ion-*
+├── global.scss               # Estilos globales (fuentes, .btn, .iconbtn)
 └── main.ts                   # Bootstrap de la aplicación
 ```
 
-> La estructura por capas (`core / shared / features / tabs`) y las convenciones de
-> arquitectura están documentadas en `docs/03-arquitectura-y-buenas-practicas.md`.
+> La estructura por capas y las convenciones están en
+> `docs/03-arquitectura-y-buenas-practicas.md`; un recorrido detallado de qué hace cada parte
+> está en `docs/05-tutorial-proyecto-completo.md`.
 
 ## Documentación / Reglas del proyecto
 
@@ -91,6 +93,8 @@ src/
 | [`docs/01-flujo-git-github.md`](./docs/01-flujo-git-github.md) | Flujo Git/GitHub: ramas, commits, PRs, code review |
 | [`docs/02-guia-deploy-y-ci.md`](./docs/02-guia-deploy-y-ci.md) | Deploy (PWA / nativo Capacitor) y CI con GitHub Actions |
 | [`docs/03-arquitectura-y-buenas-practicas.md`](./docs/03-arquitectura-y-buenas-practicas.md) | Arquitectura, estructura, convenciones, SOLID / DRY / KISS |
+| [`docs/04-roadmap-y-fases.md`](./docs/04-roadmap-y-fases.md) | Roadmap de fases (regla) y cobertura del perfil profesional |
+| [`docs/05-tutorial-proyecto-completo.md`](./docs/05-tutorial-proyecto-completo.md) | Tutorial detallado del estado actual: qué hay y qué hace cada parte |
 | [`docs/design/`](./docs/design/) | Handoff de diseño de **Nimbo** (pantallas, tokens, prototipo) |
 | [`CLAUDE.md`](./CLAUDE.md) | Guía operativa rápida (comandos, convenciones) |
 
