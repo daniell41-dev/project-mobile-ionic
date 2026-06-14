@@ -1,5 +1,5 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { StorageService } from './storage.service';
+import { SecureStorageService } from './secure-storage.service';
 
 const TOKEN_KEY = 'nimbo-auth-token';
 
@@ -10,7 +10,8 @@ const DEMO_PASSWORD = 'nimbo123';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private storage = inject(StorageService);
+  // El token es un dato sensible → almacenamiento seguro (Keystore/Keychain).
+  private storage = inject(SecureStorageService);
 
   private readonly _token = signal<string | null>(null);
   readonly token = this._token.asReadonly();
