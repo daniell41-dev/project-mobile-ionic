@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/transactions" text="" />
+    </ion-buttons>
+    <ion-title>Detalle</ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon name="ellipsis-horizontal" slot="icon-only" />
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @if (tx(); as t) {
+    <div class="tx-hero">
+      <div class="tx-icon">
+        <ion-icon [name]="t.categoryIcon" />
+      </div>
+      <div class="tx-amount amount" [class]="t.type === 'income' ? 'up' : 'down'">
+        {{ t.type === 'income' ? '+' : '−' }}{{ t.amount | currencyMxn }}
+      </div>
+      <div class="tx-merchant">{{ t.merchant }}</div>
+    </div>
+
+    <ion-list lines="inset" class="detail-list">
+      <ion-item>
+        <ion-label>Estado</ion-label>
+        <ion-chip color="success" slot="end">Completado</ion-chip>
+      </ion-item>
+      <ion-item>
+        <ion-label>Fecha</ion-label>
+        <ion-note slot="end">{{ t.date | date:'d MMM yyyy' }}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Categoría</ion-label>
+        <ion-note slot="end">{{ t.category }}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Método</ion-label>
+        <ion-note slot="end">{{ t.method }}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Referencia</ion-label>
+        <ion-note slot="end" class="ref">{{ t.reference }}</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>Comisión</ion-label>
+        <ion-note slot="end">{{ t.fee | currencyMxn }}</ion-note>
+      </ion-item>
+    </ion-list>
+
+    <div class="actions">
+      <button class="btn ghost">
+        <ion-icon name="download" />
+        Descargar comprobante
+      </button>
+      <button class="btn ghost danger">
+        Reportar un problema
+      </button>
+    </div>
+  } @else {
+    <p class="ion-text-center ion-padding">Movimiento no encontrado</p>
+  }
+</ion-content>

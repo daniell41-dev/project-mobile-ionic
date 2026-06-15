@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Tarjetas</ion-title>
+    <ion-buttons slot="end">
+      <button class="iconbtn" (click)="openNotifications()">
+        <ion-icon name="notifications" />
+        <span class="badge">3</span>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  @if (data.cards()[0]; as c) {
+    <!-- Visual de tarjeta bancaria hi-fi -->
+    <div class="card-pad">
+      <div class="bankcard">
+        <div class="card-top">
+          <span class="card-brand">Nimbo</span>
+          <ion-icon name="wallet-outline" class="card-brand-icon" />
+        </div>
+        <div class="card-chip"></div>
+        <div class="card-number">4821&nbsp;&nbsp;5519&nbsp;&nbsp;0042&nbsp;&nbsp;8821</div>
+        <div class="card-bottom">
+          <div>
+            <div class="card-lbl">Titular</div>
+            <div class="card-val">{{ c.holder }}</div>
+          </div>
+          <div class="card-network">
+            <i class="mc-circle"></i><i class="mc-circle right"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tiles de saldo -->
+    <div class="tiles-row">
+      <div class="tile">
+        <span class="tile-label">Saldo débito</span>
+        <span class="tile-value">{{ c.balance | currencyMxn }}</span>
+      </div>
+      <div class="tile">
+        <span class="tile-label">Crédito disponible</span>
+        <span class="tile-value">{{ c.creditAvailable | currencyMxn }}</span>
+      </div>
+    </div>
+
+    <!-- Controles en cuadrícula tile -->
+    <div class="section-label">Controles</div>
+    <div class="ctrl-grid">
+      <div class="ctrl-tile" (click)="toggleFrozen(!frozen())">
+        <div class="ctrl-top">
+          <div class="ctrl-ic"><ion-icon name="snow-outline" /></div>
+          <div class="ctrl-switch" [class.on]="frozen()"><i></i></div>
+        </div>
+        <div class="ctrl-name">Congelar tarjeta</div>
+        <div class="ctrl-desc">{{ frozen() ? 'Pagos bloqueados' : 'Activa al instante' }}</div>
+      </div>
+      <div class="ctrl-tile" (click)="toggleOnline(!onlinePurchases())">
+        <div class="ctrl-top">
+          <div class="ctrl-ic"><ion-icon name="globe-outline" /></div>
+          <div class="ctrl-switch" [class.on]="onlinePurchases()"><i></i></div>
+        </div>
+        <div class="ctrl-name">Compras en línea</div>
+        <div class="ctrl-desc">{{ onlinePurchases() ? 'Permitidas' : 'Bloqueadas' }}</div>
+      </div>
+    </div>
+
+    <!-- Más opciones -->
+    <div class="section-label">Más opciones</div>
+    <ion-list lines="inset">
+      <ion-item button detail>
+        <div class="opt-ic" slot="start"><ion-icon name="lock-closed-outline" /></div>
+        <ion-label>Ver PIN / CVV</ion-label>
+      </ion-item>
+      <ion-item button detail>
+        <div class="opt-ic" slot="start"><ion-icon name="copy-outline" /></div>
+        <ion-label>Copiar datos de tarjeta</ion-label>
+      </ion-item>
+      <ion-item button detail>
+        <div class="opt-ic" slot="start"><ion-icon name="trending-up-outline" /></div>
+        <ion-label>Ajustar límites</ion-label>
+        <ion-note slot="end">$50,000 / mes</ion-note>
+      </ion-item>
+      <ion-item button detail>
+        <div class="opt-ic" slot="start"><ion-icon name="card-outline" /></div>
+        <ion-label>Tarjeta física</ion-label>
+        <ion-note slot="end">Pedir reposición</ion-note>
+      </ion-item>
+    </ion-list>
+  }
+</ion-content>

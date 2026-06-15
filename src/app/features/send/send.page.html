@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      @if (step() === 2) {
+        <ion-button (click)="step.set(1)">
+          <ion-icon name="arrow-back-outline" slot="icon-only" />
+        </ion-button>
+      } @else {
+        <ion-back-button defaultHref="/tabs/home" text="" />
+      }
+    </ion-buttons>
+    <ion-title>{{ step() === 1 ? 'Enviar dinero' : 'Enviar' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- ── Paso 1: seleccionar contacto ──────────────────────────────────────────-->
+@if (step() === 1) {
+  <ion-content>
+    <div class="search-pad">
+      <ion-searchbar
+        placeholder="Nombre, teléfono o CLABE"
+        [value]="contactQuery()"
+        (ionInput)="contactQuery.set($event.detail.value!)"
+        animated
+      />
+    </div>
+
+    <!-- Recientes: scroll horizontal -->
+    <div class="recents-scroll">
+      @for (c of data.getRecentContacts(); track c.id) {
+        <div class="recent-item" (click)="selectContact(c)">
+          <div class="avatar">{{ c.initials }}</div>
+          <span>{{ c.name.split(' ')[0] }}</span>
+        </div>
+      }
+    </div>
+
+    <div class="section-label">Tus contactos</div>
+    <ion-list lines="none">
+      @for (c of filteredContacts(); track c.id) {
+        <ion-item button (click)="selectContact(c)" detail="false">
+          <ion-avatar slot="start"><span>{{ c.initials }}</span></ion-avatar>
+          <ion-label>
+            <div class="contact-name">{{ c.name }}</div>
+            <div class="contact-bank">{{ c.bank }}</div>
+          </ion-label>
+        </ion-item>
+      }
+    </ion-list>
+    @if (filteredContacts().length === 0) {
+      <div class="send-empty">Sin resultados</div>
+    }
+  </ion-content>
+}
+
+<!-- ── Paso 2: ingresar monto ────────────────────────────────────────────────-->
+@if (step() === 2) {
+  <ion-content class="send-step2">
+    <div class="amount-area">
+      @if (selectedContact(); as c) {
+        <div class="recipient-chip">
+          <div class="avatar-sm">{{ c.initials }}</div>
+          <span>{{ c.name }}</span>
+        </div>
+      }
+      <div class="amount-display">
+        <span class="cur">$</span>{{ amount() === '0' ? '0' : amount() }}
+      </div>
+      <div class="balance-hint">Saldo disponible {{ data.balance() | currencyMxn }}</div>
+    </div>
+
+    <!-- Teclado numérico custom 4×3 (no nativo) -->
+    <div class="numpad">
+      @for (row of PAD_ROWS; track $index) {
+        <div class="numpad-row">
+          @for (key of row; track key) {
+            <div class="numpad-key" [class.del-key]="key === 'del'" (click)="pressKey(key)">
+              {{ key === 'del' ? '⌫' : key }}
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </ion-content>
+
+  <ion-footer class="send-footer">
+    <ion-button expand="block" [disabled]="amountNumber <= 0" (click)="confirmSend()">
+      Enviar {{ amountNumber > 0 ? (amountNumber | currencyMxn) : '' }}
+    </ion-button>
+  </ion-footer>
+}

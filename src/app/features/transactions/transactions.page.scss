@@ -1,0 +1,83 @@
+ion-searchbar {
+  --background: var(--nimbo-surface);
+  --border-radius: var(--nimbo-radius-md);
+  --box-shadow: none;
+  --color: var(--nimbo-text);
+  --placeholder-color: var(--nimbo-text-mute);
+  --icon-color: var(--nimbo-text-mute);
+  padding: 10px var(--nimbo-screen-pad) 4px;
+  --border: 1px solid var(--nimbo-hairline);
+}
+ion-searchbar .searchbar-input {
+  border: 1px solid var(--nimbo-hairline) !important;
+}
+
+// ── Filtros pill ──────────────────────────────────────────────────────────────
+.filter-row {
+  display: flex;
+  gap: 8px;
+  padding: 0 var(--nimbo-screen-pad) 12px;
+}
+
+.filter-pill {
+  flex: 1;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid var(--nimbo-hairline);
+  background: var(--nimbo-surface);
+  color: var(--nimbo-text-dim);
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+
+  &.active {
+    background: var(--nimbo-accent);
+    color: #fff;
+    border-color: var(--nimbo-accent);
+  }
+}
+
+// ── Agrupación por día ────────────────────────────────────────────────────────
+.day-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--nimbo-text-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 12px var(--nimbo-screen-pad) 4px;
+}
+
+// ── Fila de transacción ───────────────────────────────────────────────────────
+.tx-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--nimbo-surface-2);
+  border: 1px solid var(--nimbo-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline-end: 12px;
+  flex: 0 0 auto;
+  ion-icon { font-size: 21px; color: var(--nimbo-text); }
+}
+
+ion-list { background: transparent; }
+ion-item { --background: transparent; --padding-start: var(--nimbo-screen-pad); --inner-padding-end: var(--nimbo-screen-pad); }
+
+.tx-merchant {
+  font-size: 15px; font-weight: 600; letter-spacing: -0.01em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.tx-sub { font-size: 12.5px; color: var(--nimbo-text-dim); margin-top: 2px; }
+.tx-up   { font-family: 'Sora', monospace; font-size: 14px; font-weight: 600; color: var(--nimbo-up); }
+.tx-down { font-family: 'Sora', monospace; font-size: 14px; font-weight: 600; color: var(--nimbo-down); }
+
+.empty {
+  text-align: center;
+  padding: 40px var(--nimbo-screen-pad);
+  color: var(--nimbo-text-mute);
+  font-size: 14px;
+}

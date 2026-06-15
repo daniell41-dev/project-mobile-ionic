@@ -1,0 +1,48 @@
+import { inject, Injectable, signal } from '@angular/core';
+import { StorageService } from './storage.service';
+import { StatusBarService } from './status-bar.service';
+
+export type Theme = 'dark' | 'light';
+
+const STORAGE_KEY = 'nimbo-theme';
+
+@Injectable({ providedIn: 'root' })
+export class ThemeService {
+  private storage = inject(StorageService);
+  private statusBar = inject(StatusBarService);
+
+  // Valor por defecto coherente con el <html class="dark"> de index.html.
+  // El tema persistido se resuelve de forma asíncrona en initialize().
+  readonly theme = signal<Theme>('dark');
+
+  /** Resuelve el tema persistido y lo aplica. Por defecto, oscuro (identidad Nimbo). */
+  async initialize(): Promise<void> {
+    const saved = (await this.storage.get(STORAGE_KEY)) as Theme | null;
+    const theme = saved ?? 'dark';
+    this.theme.set(theme);
+    this.applyTheme(theme);
+  }
+
+  toggle(): void {
+    this.setTheme(this.theme() === 'dark' ? 'light' : 'dark');
+  }
+
+  setTheme(theme: Theme): void {
+    this.theme.set(theme);
+    this.applyTheme(theme);
+    // Persistencia best-effort; no bloquea la UI.
+    void this.storage.set(STORAGE_KEY, theme);
+  }
+
+  isDark(): boolean {
+    return this.theme() === 'dark';
+  }
+
+  private applyTheme(theme: Theme): void {
+    const html = document.documentElement;
+    html.classList.toggle('dark', theme === 'dark');
+    html.classList.toggle('light', theme === 'light');
+    // Sincroniza la barra de estado nativa (no-op en web).
+    void this.statusBar.apply(theme === 'dark');
+  }
+}

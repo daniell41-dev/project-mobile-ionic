@@ -1,0 +1,149 @@
+// Nimbo — Design Tokens
+// Fuente de verdad: docs/design/README.md (Design Tokens + docs/design/prototipo/styles.css)
+//
+// Se aplica modo oscuro vía clase .dark en <html> (ThemeService).
+// prefers-color-scheme se gestiona en global.scss para el primer render.
+
+// ─── Fuentes ────────────────────────────────────────────────────────────────
+// Plus Jakarta Sans (UI) y Sora (montos numéricos) se importan en index.html.
+// Se asignan a las variables de Ionic para que todos los componentes las hereden.
+
+:root {
+  --ion-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+// ─── Modo Oscuro (default) ───────────────────────────────────────────────────
+
+:root,
+.dark {
+  // Fondos
+  --nimbo-bg:        #090B10;
+  --nimbo-surface:   #14181F;
+  --nimbo-surface-2: #1B212B;
+  --nimbo-surface-3: #232B37;
+  --nimbo-hairline:  rgba(255, 255, 255, 0.075);
+
+  // Texto
+  --nimbo-text:      #EEF1F6;
+  --nimbo-text-dim:  #9BA4B3;
+  --nimbo-text-mute: #626C7C;
+
+  // Acento
+  --nimbo-accent:    #4C8DFF;
+  --nimbo-accent-ink: #07101F;
+
+  // Semánticos
+  --nimbo-up:        #3FD1A0;
+  --nimbo-down:      #FF8A8A;
+  --nimbo-up-soft:   rgba(63, 209, 160, 0.14);
+
+  // Acento de marca (constante en ambos modos)
+  --nimbo-accent-500: #2A6FDB;
+  --nimbo-accent-400: #4C8DFF;
+  --nimbo-accent-600: #1F5BC0;
+  --nimbo-accent-soft: rgba(76, 141, 255, 0.14);
+
+  // Gradiente de la tarjeta de saldo
+  --nimbo-card-gradient: linear-gradient(150deg, #2A6FDB, #1B3F86 60%, #14264F);
+
+  // Radios
+  --nimbo-radius-sm: 10px;
+  --nimbo-radius-md: 16px;
+  --nimbo-radius-lg: 22px;
+  --nimbo-radius-xl: 28px;
+
+  // Padding lateral de pantalla
+  --nimbo-screen-pad: 20px;
+
+  // Sombra de tarjeta elevada
+  --nimbo-shadow-card: 0 18px 50px -20px rgba(0, 0, 0, 0.8);
+  --nimbo-shadow-soft: 0 8px 28px -14px rgba(0, 0, 0, 0.7);
+
+  // ── Mapeo a variables de Ionic ─────────────────────────────────────────────
+  --ion-background-color:            var(--nimbo-bg);
+  --ion-background-color-rgb:        9, 11, 16;
+  --ion-text-color:                  var(--nimbo-text);
+  --ion-text-color-rgb:              238, 241, 246;
+
+  --ion-color-primary:               var(--nimbo-accent);
+  --ion-color-primary-rgb:           76, 141, 255;
+  --ion-color-primary-contrast:      #ffffff;
+  --ion-color-primary-contrast-rgb:  255, 255, 255;
+  --ion-color-primary-shade:         #3a7ae0;
+  --ion-color-primary-tint:          #5e9aff;
+
+  --ion-color-success:               var(--nimbo-up);
+  --ion-color-danger:                var(--nimbo-down);
+
+  --ion-card-background:             var(--nimbo-surface);
+  --ion-item-background:             var(--nimbo-surface);
+  --ion-toolbar-background:          var(--nimbo-bg);
+  --ion-tab-bar-background:          var(--nimbo-surface);
+  --ion-tab-bar-border-color:        var(--nimbo-hairline);
+  --ion-tab-bar-color:               var(--nimbo-text-mute);
+  --ion-tab-bar-color-selected:      var(--nimbo-accent);
+  --ion-border-color:                var(--nimbo-hairline);
+
+  --ion-color-step-50:               #12161e;
+  --ion-color-step-100:              var(--nimbo-surface);
+  --ion-color-step-150:              #1b2028;
+  --ion-color-step-200:              var(--nimbo-surface-2);
+  --ion-color-step-250:              #1f2731;
+  --ion-color-step-300:              var(--nimbo-surface-3);
+}
+
+// ─── Modo Claro ──────────────────────────────────────────────────────────────
+
+:root.light,
+body.light {
+  --nimbo-bg:        #EDF0F5;
+  --nimbo-surface:   #FFFFFF;
+  --nimbo-surface-2: #F4F6FA;
+  --nimbo-surface-3: #EAEEF5;
+  --nimbo-hairline:  rgba(13, 19, 32, 0.08);
+
+  --nimbo-text:      #0E1320;
+  --nimbo-text-dim:  #5A6473;
+  --nimbo-text-mute: #8A94A4;
+
+  --nimbo-accent:    #2A6FDB;
+  --nimbo-accent-soft: rgba(42, 111, 219, 0.12);
+  --nimbo-accent-ink: #FFFFFF;
+
+  --nimbo-up:        #128C5E;
+  --nimbo-down:      #D2453C;
+  --nimbo-up-soft:   rgba(18, 140, 94, 0.10);
+
+  --nimbo-shadow-card: 0 20px 44px -22px rgba(20, 40, 90, 0.45);
+  --nimbo-shadow-soft: 0 10px 26px -16px rgba(20, 40, 90, 0.28);
+
+  // Mapeo Ionic
+  --ion-background-color:            var(--nimbo-bg);
+  --ion-background-color-rgb:        237, 240, 245;
+  --ion-text-color:                  var(--nimbo-text);
+  --ion-text-color-rgb:              14, 19, 32;
+
+  --ion-color-primary:               var(--nimbo-accent);
+  --ion-color-primary-rgb:           42, 111, 219;
+  --ion-color-primary-contrast:      #ffffff;
+  --ion-color-primary-contrast-rgb:  255, 255, 255;
+  --ion-color-primary-shade:         #2560c0;
+  --ion-color-primary-tint:          #3f7de0;
+
+  --ion-color-success:               var(--nimbo-up);
+  --ion-color-danger:                var(--nimbo-down);
+
+  --ion-card-background:             var(--nimbo-surface);
+  --ion-item-background:             var(--nimbo-surface);
+  --ion-toolbar-background:          var(--nimbo-bg);
+  --ion-tab-bar-background:          var(--nimbo-surface);
+  --ion-tab-bar-border-color:        var(--nimbo-hairline);
+  --ion-tab-bar-color:               var(--nimbo-text-mute);
+  --ion-tab-bar-color-selected:      var(--nimbo-accent);
+  --ion-border-color:                var(--nimbo-hairline);
+
+  --ion-color-step-50:               #f0f2f7;
+  --ion-color-step-100:              var(--nimbo-surface-2);
+  --ion-color-step-150:              #eaecf2;
+  --ion-color-step-200:              var(--nimbo-surface-3);
+}

@@ -1,0 +1,228 @@
+// ── Header ───────────────────────────────────────────────────────────────────
+
+.header-avatar {
+  width: 40px;
+  height: 40px;
+  background: var(--nimbo-accent-soft);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline-end: 10px;
+  flex: 0 0 auto;
+
+  span {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--nimbo-accent);
+  }
+}
+
+.header-greeting {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+// ── Tarjeta de saldo ─────────────────────────────────────────────────────────
+
+.balance-card {
+  position: relative;
+  overflow: hidden;
+  margin: 6px var(--nimbo-screen-pad) 0;
+  background: var(--nimbo-card-gradient) !important;
+  border-radius: var(--nimbo-radius-xl);
+  box-shadow: var(--nimbo-shadow-card);
+
+  &::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(120% 120% at 80% -10%, rgba(76, 141, 255, 0.22), transparent 55%);
+    pointer-events: none;
+  }
+
+  ion-card-content { padding: 22px; position: relative; }
+}
+
+.balance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.balance-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+}
+
+.balance-amount {
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 10px 0 2px;
+}
+
+.balance-sub {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.7);
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 999px;
+    padding: 4px 9px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    ion-icon { font-size: 13px; }
+  }
+}
+
+.balance-clabe {
+  font-family: 'Sora', monospace;
+  letter-spacing: 0.14em;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 16px;
+}
+
+// ── Acciones rápidas ─────────────────────────────────────────────────────────
+
+.quick-actions {
+  margin: 20px var(--nimbo-screen-pad);
+  padding: 0;
+
+  ion-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  span {
+    font-size: 12px;
+    color: var(--nimbo-text-dim);
+  }
+}
+
+.action-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  background: var(--nimbo-surface);
+  border: 1px solid var(--nimbo-hairline);
+  box-shadow: var(--nimbo-shadow-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  ion-icon {
+    font-size: 23px;
+    color: var(--nimbo-accent);
+  }
+}
+
+// ── Section header ────────────────────────────────────────────────────────────
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--nimbo-screen-pad);
+  margin: 22px 0 12px;
+
+  span {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+}
+
+.section-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--nimbo-accent);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+// ── Meta de ahorro ────────────────────────────────────────────────────────────
+
+.goal-card {
+  margin: 0 var(--nimbo-screen-pad) 20px;
+  ion-card-content { padding: 16px; }
+}
+
+.goal-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.goal-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.goal-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--nimbo-accent-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+
+  ion-icon { font-size: 20px; color: var(--nimbo-accent); }
+}
+
+.goal-name { font-size: 14px; font-weight: 600; }
+.goal-amounts { font-size: 12px; }
+.goal-pct { font-size: 16px; font-weight: 700; color: var(--nimbo-accent); font-family: 'Sora', monospace; }
+
+// ── Transacciones ─────────────────────────────────────────────────────────────
+
+.tx-list {
+  padding: 0;
+  background: transparent;
+
+  ion-item {
+    --background: transparent;
+    --padding-start: var(--nimbo-screen-pad);
+    --inner-padding-end: var(--nimbo-screen-pad);
+  }
+}
+
+.tx-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--nimbo-surface-2);
+  border: 1px solid var(--nimbo-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-inline-end: 12px;
+  flex: 0 0 auto;
+
+  ion-icon { font-size: 21px; color: var(--nimbo-text); }
+}
+
+.tx-merchant {
+  font-size: 15px; font-weight: 600; letter-spacing: -0.01em;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.tx-sub { font-size: 12.5px; margin-top: 2px; }
+.tx-up   { font-family: 'Sora', monospace; font-size: 14px; font-weight: 600; color: var(--nimbo-up); }
+.tx-down { font-family: 'Sora', monospace; font-size: 14px; font-weight: 600; color: var(--nimbo-down); }
+.dim     { color: var(--nimbo-text-dim); }

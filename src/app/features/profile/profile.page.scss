@@ -1,0 +1,142 @@
+.pad { padding: 0 var(--nimbo-screen-pad); }
+
+// ── Cabecera ──────────────────────────────────────────────────────────────────
+.profile-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 6px;
+  padding: 18px;
+  background: var(--nimbo-surface);
+  border: 1px solid var(--nimbo-hairline);
+  border-radius: var(--nimbo-radius-lg);
+  box-shadow: var(--nimbo-shadow-soft);
+}
+
+.avatar {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: var(--nimbo-accent-soft);
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--nimbo-accent);
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  overflow: visible;
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 999px;
+    object-fit: cover;
+  }
+
+  .avatar-edit {
+    position: absolute;
+    right: -2px;
+    bottom: -2px;
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    background: var(--nimbo-accent);
+    color: #fff;
+    display: grid;
+    place-items: center;
+    border: 2px solid var(--nimbo-bg);
+    ion-icon { font-size: 12px; }
+  }
+}
+
+.user-info { flex: 1; min-width: 0; }
+
+.user-name { font-size: 17px; font-weight: 700; letter-spacing: -0.01em; }
+
+.user-email {
+  font-size: 13px;
+  color: var(--nimbo-text-dim);
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: var(--nimbo-up-soft);
+  color: var(--nimbo-up);
+  ion-icon { font-size: 13px; }
+}
+
+// ── Section title ─────────────────────────────────────────────────────────────
+.section-title {
+  padding: 0 var(--nimbo-screen-pad);
+  margin: 22px 0 12px;
+  h2 { font-size: 15px; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+}
+
+// ── Filas (prow) ──────────────────────────────────────────────────────────────
+.list { display: flex; flex-direction: column; }
+
+.prow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px var(--nimbo-screen-pad);
+  cursor: pointer;
+  transition: background 0.12s;
+  &:active { background: var(--nimbo-surface-2); }
+
+  .ic {
+    width: 38px; height: 38px;
+    border-radius: 12px;
+    display: grid; place-items: center;
+    background: var(--nimbo-surface-2);
+    color: var(--nimbo-accent);
+    border: 1px solid var(--nimbo-hairline);
+    flex: 0 0 auto;
+    ion-icon { font-size: 19px; }
+  }
+  .t { flex: 1; font-size: 15px; font-weight: 600; }
+  .val { font-size: 13px; color: var(--nimbo-text-dim); }
+  .chev { color: var(--nimbo-text-mute); font-size: 18px; }
+}
+
+// switch (modo oscuro)
+.switch {
+  width: 44px; height: 26px; border-radius: 999px;
+  background: var(--nimbo-surface-3);
+  position: relative; transition: background 0.2s; flex: 0 0 auto;
+  i {
+    position: absolute; top: 3px; left: 3px;
+    width: 20px; height: 20px; border-radius: 999px;
+    background: #fff; transition: left 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  &.on { background: var(--nimbo-accent); i { left: 21px; } }
+}
+
+// ── Logout ────────────────────────────────────────────────────────────────────
+.logout-wrap { margin-top: 22px; padding-bottom: 28px; }
+
+.btn.ghost.danger { color: var(--nimbo-down); }
+
+.version {
+  text-align: center;
+  font-size: 12px;
+  color: var(--nimbo-text-mute);
+  margin-top: 16px;
+}

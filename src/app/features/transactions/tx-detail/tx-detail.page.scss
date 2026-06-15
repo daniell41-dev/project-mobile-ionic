@@ -1,0 +1,51 @@
+.tx-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px var(--nimbo-screen-pad) 24px;
+  gap: 8px;
+}
+
+.tx-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: var(--nimbo-surface);
+  border: 1px solid var(--nimbo-hairline);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+  ion-icon { font-size: 30px; color: var(--nimbo-text); }
+}
+
+.tx-amount {
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  &.up   { color: var(--nimbo-up); }
+  &.down { color: var(--nimbo-text); }
+}
+
+.tx-merchant {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--nimbo-text-dim);
+}
+
+.detail-list {
+  margin: 0 var(--nimbo-screen-pad);
+  background: transparent;
+  ion-item { --background: transparent; --padding-start: 0; --inner-padding-end: 0; }
+}
+
+.ref { font-size: 11px; }
+
+.actions {
+  padding: 22px var(--nimbo-screen-pad);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn.ghost.danger { color: var(--nimbo-down); }

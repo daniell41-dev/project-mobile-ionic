@@ -1,0 +1,150 @@
+// ── Tarjeta bancaria hi-fi ────────────────────────────────────────────────────
+.card-pad { padding: 20px var(--nimbo-screen-pad) 0; }
+
+.bankcard {
+  background: linear-gradient(150deg, #2A6FDB, #16306b);
+  border-radius: var(--nimbo-radius-xl);
+  padding: 22px;
+  color: #fff;
+  height: 210px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--nimbo-shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-brand { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+.card-brand-icon { font-size: 22px; opacity: 0.85; }
+
+.card-chip {
+  width: 38px; height: 28px;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #e8d28a, #b8973f);
+  opacity: 0.9;
+}
+
+.card-number {
+  font-family: 'Sora', monospace;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.card-lbl { font-size: 10px; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.08em; }
+.card-val { font-size: 14px; font-weight: 600; margin-top: 2px; }
+
+.card-network {
+  display: flex;
+  align-items: center;
+  .mc-circle {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    display: block;
+    &:first-child { background: rgba(255, 90, 90, 0.9); }
+    &.right { background: rgba(255, 180, 40, 0.9); margin-left: -10px; }
+  }
+}
+
+// ── Tiles saldo ───────────────────────────────────────────────────────────────
+.tiles-row {
+  display: flex;
+  gap: 12px;
+  padding: 14px var(--nimbo-screen-pad) 0;
+}
+
+.tile {
+  flex: 1;
+  background: var(--nimbo-surface);
+  border-radius: var(--nimbo-radius-md);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border: 1px solid var(--nimbo-hairline);
+}
+
+.tile-label { font-size: 12px; color: var(--nimbo-text-dim); font-weight: 600; }
+.tile-value { font-size: 18px; font-weight: 700; font-family: 'Sora', monospace; font-variant-numeric: tabular-nums; }
+
+// ── Section label ─────────────────────────────────────────────────────────────
+.section-label { font-size: 15px; font-weight: 700; padding: 18px var(--nimbo-screen-pad) 10px; }
+
+// ── Control tiles ─────────────────────────────────────────────────────────────
+.ctrl-grid {
+  display: flex;
+  gap: 12px;
+  padding: 0 var(--nimbo-screen-pad);
+}
+
+.ctrl-tile {
+  flex: 1;
+  background: var(--nimbo-surface);
+  border-radius: var(--nimbo-radius-md);
+  border: 1px solid var(--nimbo-hairline);
+  padding: 16px;
+  cursor: pointer;
+  user-select: none;
+  &:active { opacity: 0.8; }
+}
+
+.ctrl-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+
+.ctrl-ic {
+  width: 38px; height: 38px;
+  border-radius: 12px;
+  background: var(--nimbo-surface-2);
+  display: flex; align-items: center; justify-content: center;
+  ion-icon { font-size: 19px; color: var(--nimbo-accent); }
+}
+
+.ctrl-switch {
+  width: 44px; height: 26px;
+  border-radius: 999px;
+  background: var(--nimbo-surface-3);
+  position: relative;
+  transition: background 0.2s;
+  flex: 0 0 auto;
+  i {
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: left 0.2s;
+  }
+  &.on { background: var(--nimbo-accent); i { left: 21px; } }
+}
+
+.ctrl-name { font-size: 13.5px; font-weight: 700; }
+.ctrl-desc { font-size: 12px; color: var(--nimbo-text-dim); margin-top: 2px; }
+
+// ── Más opciones ──────────────────────────────────────────────────────────────
+ion-list { background: transparent; }
+ion-list ion-item { --background: transparent; --padding-start: var(--nimbo-screen-pad); --inner-padding-end: var(--nimbo-screen-pad); }
+
+.opt-ic {
+  width: 38px; height: 38px;
+  border-radius: 12px;
+  background: var(--nimbo-surface-2);
+  border: 1px solid var(--nimbo-hairline);
+  display: flex; align-items: center; justify-content: center;
+  margin-inline-end: 12px;
+  ion-icon { font-size: 19px; color: var(--nimbo-accent); }
+}

@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Movimientos</ion-title>
+    <ion-buttons slot="end">
+      <button class="iconbtn" (click)="openNotifications()">
+        <ion-icon name="notifications" />
+        <span class="badge">3</span>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar
+    placeholder="Buscar comercio o persona"
+    [value]="searchQuery()"
+    (ionInput)="searchQuery.set($event.detail.value!)"
+    animated
+  />
+
+  <!-- Filtros pill -->
+  <div class="filter-row">
+    @for (f of [['all','Todos'],['income','Ingresos'],['expense','Gastos']]; track f[0]) {
+      <button
+        class="filter-pill"
+        [class.active]="filter() === f[0]"
+        (click)="setFilter($any(f[0]))"
+      >{{ f[1] }}</button>
+    }
+  </div>
+
+  <!-- Lista agrupada por día -->
+  @for (group of groups(); track group.label) {
+    <div class="day-label">{{ group.label }}</div>
+    <ion-list lines="none">
+      @for (tx of group.items; track tx.id) {
+        <ion-item button (click)="openDetail(tx.id)" detail="false">
+          <div class="tx-icon" slot="start">
+            <ion-icon [name]="tx.categoryIcon" />
+          </div>
+          <ion-label>
+            <div class="tx-merchant">{{ tx.merchant }}</div>
+            <div class="tx-sub">{{ tx.category }} · {{ tx.time }}</div>
+          </ion-label>
+          <ion-note slot="end" [class]="tx.type === 'income' ? 'tx-up' : 'tx-down'">
+            {{ tx.type === 'income' ? '+' : '−' }}{{ tx.amount | currencyMxn }}
+          </ion-note>
+        </ion-item>
+      }
+    </ion-list>
+  }
+
+  @if (groups().length === 0) {
+    <div class="empty">Sin resultados</div>
+  }
+</ion-content>

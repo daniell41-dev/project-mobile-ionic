@@ -1,0 +1,93 @@
+ion-content { --background: var(--nimbo-bg); }
+
+.onb {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 0 28px;
+  padding-top: calc(env(safe-area-inset-top, 0px) + 8px);
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 18px);
+}
+
+.iconbtn.back { margin-bottom: 28px; }
+
+.header {
+  flex: 0 0 auto;
+  h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.02em; margin: 0; }
+  p { font-size: 15px; color: var(--nimbo-text-dim); margin: 10px 0 0; }
+}
+
+.form { display: flex; flex-direction: column; margin-top: 34px; }
+
+.field {
+  margin-bottom: 14px;
+  label { display: block; font-size: 13px; font-weight: 600; color: var(--nimbo-text-dim); margin-bottom: 7px; }
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--nimbo-surface);
+  border-radius: var(--nimbo-radius-md);
+  border: 1px solid var(--nimbo-hairline);
+  padding: 0 16px;
+  height: 54px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+
+  &:focus-within {
+    border-color: var(--nimbo-accent);
+    box-shadow: 0 0 0 3px var(--nimbo-accent-soft);
+  }
+  &.error { border-color: var(--nimbo-down); }
+}
+
+.input-icon { font-size: 19px; color: var(--nimbo-text-mute); flex: 0 0 auto; }
+.eye-btn { font-size: 19px; color: var(--nimbo-text-mute); cursor: pointer; flex: 0 0 auto; }
+
+input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--nimbo-text);
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 16px;
+  min-width: 0;
+  &::placeholder { color: var(--nimbo-text-mute); }
+}
+
+.error-text { font-size: 12px; color: var(--nimbo-down); }
+
+.forgot {
+  text-align: right;
+  margin: 2px 0 22px;
+  span { font-size: 13px; font-weight: 600; color: var(--nimbo-accent); cursor: pointer; }
+}
+
+.error-banner {
+  background: rgba(255, 138, 138, 0.12);
+  border: 1px solid var(--nimbo-down);
+  border-radius: var(--nimbo-radius-sm);
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: var(--nimbo-down);
+}
+
+.spacer { flex: 1; }
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0 18px;
+  hr { flex: 1; height: 1px; border: none; background: var(--nimbo-hairline); }
+  span { font-size: 12.5px; font-weight: 600; color: var(--nimbo-text-mute); white-space: nowrap; }
+}
+
+.social {
+  display: flex;
+  gap: 12px;
+  .btn { flex: 1; }
+}

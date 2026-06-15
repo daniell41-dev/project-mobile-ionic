@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Cabecera -->
+  <div class="pad">
+    <div class="profile-card">
+      <button class="avatar" (click)="changeAvatar()" aria-label="Cambiar foto de perfil">
+        @if (avatarPhoto(); as photo) {
+          <img [src]="photo" alt="Foto de perfil" />
+        } @else {
+          {{ data.user().avatarInitials }}
+        }
+        <span class="avatar-edit"><ion-icon name="camera-outline" /></span>
+      </button>
+      <div class="user-info">
+        <div class="user-name">{{ data.user().name }}</div>
+        <div class="user-email">{{ data.user().email }}</div>
+      </div>
+      @if (data.user().verified) {
+        <span class="tag"><ion-icon name="checkmark" /> Verificada</span>
+      }
+    </div>
+  </div>
+
+  <!-- Cuenta -->
+  <div class="section-title"><h2>Cuenta</h2></div>
+  <div class="list">
+    <div class="prow">
+      <div class="ic"><ion-icon name="person-outline" /></div>
+      <div class="t">Datos personales</div>
+      <ion-icon class="chev" name="chevron-forward" />
+    </div>
+    <div class="prow">
+      <div class="ic"><ion-icon name="business-outline" /></div>
+      <div class="t">Mis cuentas y CLABE</div>
+      <ion-icon class="chev" name="chevron-forward" />
+    </div>
+    <div class="prow" (click)="toggleBiometric()">
+      <div class="ic"><ion-icon name="shield-checkmark-outline" /></div>
+      <div class="t">Seguridad y biometría</div>
+      <div class="switch" [class.on]="biometric.enabled()"><i></i></div>
+    </div>
+  </div>
+
+  <!-- Preferencias -->
+  <div class="section-title"><h2>Preferencias</h2></div>
+  <div class="list">
+    <div class="prow" (click)="toggleTheme(!theme.isDark())">
+      <div class="ic"><ion-icon name="moon-outline" /></div>
+      <div class="t">Modo oscuro</div>
+      <div class="switch" [class.on]="theme.isDark()"><i></i></div>
+    </div>
+    <div class="prow">
+      <div class="ic"><ion-icon name="notifications-outline" /></div>
+      <div class="t">Notificaciones</div>
+      <ion-icon class="chev" name="chevron-forward" />
+    </div>
+    <div class="prow">
+      <div class="ic"><ion-icon name="globe-outline" /></div>
+      <div class="t">Idioma</div>
+      <div class="val">Español</div>
+      <ion-icon class="chev" name="chevron-forward" />
+    </div>
+    <div class="prow">
+      <div class="ic"><ion-icon name="help-circle-outline" /></div>
+      <div class="t">Ayuda y soporte</div>
+      <ion-icon class="chev" name="chevron-forward" />
+    </div>
+  </div>
+
+  <div class="pad logout-wrap">
+    <button class="btn ghost danger" (click)="logout()">
+      <ion-icon name="log-out-outline" /> Cerrar sesión
+    </button>
+    <div class="version">Nimbo · versión 1.0.0</div>
+  </div>
+</ion-content>
