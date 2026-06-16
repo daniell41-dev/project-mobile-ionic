@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Nimbo">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4C8DFF"/>
+      <stop offset="1" stop-color="#1F5BC0"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- Cartera estilizada (identidad Nimbo) -->
+  <rect x="120" y="168" width="272" height="180" rx="32" fill="#0B1322" opacity="0.18"/>
+  <rect x="120" y="150" width="272" height="180" rx="32" fill="#FFFFFF"/>
+  <rect x="270" y="214" width="138" height="52" rx="26" fill="#0E1320"/>
+  <circle cx="320" cy="240" r="13" fill="#4C8DFF"/>
+</svg>

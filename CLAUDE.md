@@ -76,4 +76,5 @@ Claude sigue **siempre** este flujo, sin que el usuario tenga que pedirlo:
 - `docs/03-arquitectura-y-buenas-practicas.md` — arquitectura, convenciones, SOLID.
 - `docs/04-roadmap-y-fases.md` — **roadmap de fases (regla)**; léelo antes de trabajar.
 - `docs/05-tutorial-proyecto-completo.md` — tutorial del estado actual (documento vivo).
+- `docs/06-guia-entrevista.md` — guía de entrevista y banco de preguntas de reclutador.
 - `docs/design/` — handoff de diseño de Nimbo (qué construir).

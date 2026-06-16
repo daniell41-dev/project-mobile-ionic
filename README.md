@@ -95,6 +95,7 @@ src/
 | [`docs/03-arquitectura-y-buenas-practicas.md`](./docs/03-arquitectura-y-buenas-practicas.md) | Arquitectura, estructura, convenciones, SOLID / DRY / KISS |
 | [`docs/04-roadmap-y-fases.md`](./docs/04-roadmap-y-fases.md) | Roadmap de fases (regla) y cobertura del perfil profesional |
 | [`docs/05-tutorial-proyecto-completo.md`](./docs/05-tutorial-proyecto-completo.md) | Tutorial detallado del estado actual: qué hay y qué hace cada parte |
+| [`docs/06-guia-entrevista.md`](./docs/06-guia-entrevista.md) | Guía de entrevista y banco de preguntas de reclutador (postulación Mobile Ionic) |
 | [`docs/design/`](./docs/design/) | Handoff de diseño de **Nimbo** (pantallas, tokens, prototipo) |
 | [`CLAUDE.md`](./CLAUDE.md) | Guía operativa rápida (comandos, convenciones) |
 
