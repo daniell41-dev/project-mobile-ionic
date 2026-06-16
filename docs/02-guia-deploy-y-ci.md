@@ -103,22 +103,36 @@ Android en la nube y lo publica como artifact (ver Parte 4-bis).
 
 Ionic corre en navegador sin cambios. Publicar `www/` da un **link de demo navegable**.
 
-### Opción A — GitHub Pages
+### Opción A — GitHub Pages (automatizado, recomendado)
 
-1. Build con el `baseHref` correcto (Pages sirve bajo `/<repo>/`):
+El repo incluye **`.github/workflows/pages.yml`**, que publica la PWA en cada push a `main`
+(al mergear el release) o de forma manual (*Actions → Deploy PWA → Run workflow*). El workflow:
 
-   ```bash
-   pnpm exec ng build --configuration production --base-href /project-mobile-ionic/
-   ```
+1. Build de producción con el `baseHref` de Pages:
+   `pnpm exec ng build --configuration production --base-href /project-mobile-ionic/`.
+2. Copia `www/index.html` → `www/404.html` (fallback del History API en rutas profundas) y
+   añade `.nojekyll`.
+3. Sube `www/` y despliega con `actions/deploy-pages`.
 
-2. Publicar `www/` en la rama `gh-pages` (manual con `git subtree`/`gh-pages`, o con una
-   GitHub Action de deploy de Pages).
-3. Activar Pages en *Settings → Pages* apuntando a `gh-pages`.
+**Ajuste una sola vez** (en GitHub): *Settings → Pages → Build and deployment → Source =*
+**GitHub Actions**. A partir de ahí, cada release a `main` actualiza el demo en:
 
-> Nota: el routing de Ionic usa el History API; en Pages conviene una copia de
-> `index.html` como `404.html` para que las rutas profundas no den 404 al recargar.
+```
+https://daniell41-dev.github.io/project-mobile-ionic/
+```
 
-### Opción B — Firebase Hosting
+> El demo usa datos mock (in-memory; `useMockApi: true` en prod), por lo que **no** requiere
+> backend. Tampoco usa caché offline (no hay service worker de Angular), para mantenerlo simple.
+
+### Instalar la demo en el iPhone (sin Mac)
+
+1. Abre la URL del demo en **Safari** en el iPhone.
+2. Toca **Compartir** → **Añadir a pantalla de inicio**.
+3. Se instala como app (icono Nimbo, pantalla completa) gracias al `manifest.webmanifest` y a los
+   `<meta apple-mobile-web-app-*>` de `src/index.html`. Esto valida UI, navegación, tema y charts
+   en un iPhone real sin compilar nativo.
+
+### Opción B — Firebase Hosting (alternativa)
 
 ```bash
 pnpm add -D firebase-tools
@@ -130,13 +144,12 @@ pnpm exec firebase deploy --only hosting
 
 Firebase reescribe todas las rutas a `index.html` automáticamente (ideal para SPA/Ionic).
 
-### (Opcional) Convertirla en PWA instalable
+### PWA instalable (ya configurada)
 
-```bash
-pnpm exec ng add @angular/pwa
-```
-
-Añade `manifest.webmanifest` + service worker; tras `pnpm build` la demo es instalable.
+Nimbo ya es una **PWA instalable**: `src/manifest.webmanifest` (nombre, iconos, colores,
+`display: standalone`) enlazado desde `src/index.html` con `theme-color` y `apple-touch-icon`.
+No se usa `@angular/service-worker` (sin caché offline) para evitar complejidad y conflictos con
+el worker de MSW.
 
 ---
 

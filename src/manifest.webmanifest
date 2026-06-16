@@ -1,0 +1,25 @@
+{
+  "name": "Nimbo · Banca personal",
+  "short_name": "Nimbo",
+  "description": "Banca personal: saldos, transferencias, tarjetas y análisis.",
+  "lang": "es-MX",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#090B10",
+  "theme_color": "#090B10",
+  "icons": [
+    {
+      "src": "assets/icon/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/icon/favicon.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    }
+  ]
+}

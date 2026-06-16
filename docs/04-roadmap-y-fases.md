@@ -130,4 +130,5 @@ Apple obliga a **Xcode (solo macOS)** para compilar/firmar iOS. Estrategia adopt
 - `docs/02-guia-deploy-y-ci.md` — deploy (PWA/nativo) y CI.
 - `docs/03-arquitectura-y-buenas-practicas.md` — arquitectura, SOLID, convenciones.
 - `docs/05-tutorial-proyecto-completo.md` — tutorial del estado actual (documento vivo).
+- `docs/06-guia-entrevista.md` — guía de entrevista y banco de preguntas de reclutador.
 - `docs/design/` — handoff de diseño de Nimbo.
